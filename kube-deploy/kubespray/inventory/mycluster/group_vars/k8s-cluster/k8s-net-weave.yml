@@ -1,7 +1,7 @@
 # see roles/network_plugin/weave/defaults/main.yml
 
 # Weave's network password for encryption, if null then no network encryption.
-# weave_password: ~
+weave_password: "9sdnbFQ^f4KZU^3^xg"
 
 # If set to 1, disable checking for new Weave Net versions (default is blank,
 # i.e. check is enabled)
