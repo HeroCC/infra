@@ -72,7 +72,7 @@ kube_users:
 
 # Choose network plugin (cilium, calico, contiv, weave or flannel. Use cni for generic cni plugin)
 # Can also be set to 'cloud', which lets the cloud provider setup appropriate routing
-kube_network_plugin: calico
+kube_network_plugin: weave
 
 # Setting multi_networking to true will install Multus: https://github.com/intel/multus-cni
 kube_network_plugin_multus: false
@@ -124,7 +124,7 @@ kube_proxy_nodeport_addresses: >-
 #   {%- endif -%}
 
 ## Encrypting Secret Data at Rest (experimental)
-kube_encrypt_secret_data: false
+kube_encrypt_secret_data: true
 
 # DNS configuration.
 # Kubernetes cluster name, also will be used as DNS domain
@@ -185,7 +185,7 @@ dynamic_kubelet_configuration_dir: "{{ kubelet_config_dir | default(default_kube
 podsecuritypolicy_enabled: false
 
 # Make a copy of kubeconfig on the host that runs Ansible in {{ inventory_dir }}/artifacts
-# kubeconfig_localhost: false
+kubeconfig_localhost: true
 # Download kubectl onto the host that runs Ansible in {{ bin_dir }}
 # kubectl_localhost: false
 
