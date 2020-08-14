@@ -1,0 +1,11 @@
+---
+flux:
+  git:
+    url: git@github.com:HeroCC/infra.git
+    branch: master
+    path: "kube"
+  # If enabled, fluxd will delete resources that it created, but are no longer present in git
+  syncGarbageCollection:
+    enabled: true
+  # Enables running Kustomize
+  manifestGeneration: true
