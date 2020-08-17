@@ -1,6 +1,9 @@
 name: Validate Charts
 
-on: [push, pull_request]
+on: 
+  push:
+    branches:
+     - master
 
 jobs: 
   hrval:
