@@ -1,9 +1,9 @@
 ---
 flux:
   git:
-    url: git@github.com:HeroCC/infra.git
+    url: "git@github.com:HeroCC/infra.git"
     branch: master
-    path: "kube"
+    path: deployments
   # If enabled, fluxd will delete resources that it created, but are no longer present in git
   syncGarbageCollection:
     enabled: true

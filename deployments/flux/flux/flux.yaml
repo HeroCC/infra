@@ -1,0 +1,19 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: flux
+  namespace: flux
+  annotations:
+    fluxcd.io/ignore: "false"
+    fluxcd.io/automated: "false"
+spec:
+  releaseName: flux
+  chart:
+    repository: https://charts.fluxcd.io/
+    name: flux
+    version: 1.20.1
+  valuesFrom:
+  - externalSourceRef:
+      url: https://raw.githubusercontent.com/herocc/infra/master/deployments/flux/flux/flux-values.yaml
+
