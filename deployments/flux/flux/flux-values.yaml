@@ -3,6 +3,8 @@ git:
   url: "git@github.com:HeroCC/infra"
   branch: master
   path: deployments
+additionalArgs:
+  - --connect=ws://fluxcloud
 # If enabled, fluxd will delete resources that it created, but are no longer present in git
 syncGarbageCollection:
   enabled: true

@@ -1,0 +1,62 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: fluxcloud
+  namespace: flux
+spec:
+  selector:
+    name: fluxcloud
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3032
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fluxcloud
+  namespace: flux
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: fluxcloud
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        name: fluxcloud
+    spec:
+      securityContext:
+        runAsUser: 999
+      containers:
+      - name: fluxcloud
+        image: justinbarrick/fluxcloud:v0.3.9
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3032
+        env:
+        - name: SLACK_URL
+          value: "https://discordapp.com/api/webhooks/745014630384140360/jJASqbTYNou_TEqyt4OeerO9bxA9mx9n33H_pSMRV3VNz1TYvMaN699ijKpG2OOcgECO/slack"
+        - name: SLACK_CHANNEL
+          value: "#kubernetes"
+        # Or configure multiple channels
+        # (comma separated <channel>=<namespace>) string:
+        #  value: "#kubernetes=*,#team=team"
+        # Optional: legacy Slack API token
+        # - name: SLACK_TOKEN
+        #   valueFrom:
+        #     secretKeyRef:
+        #       key: token
+        #       name: slack-token
+        - name: SLACK_USERNAME
+          value: Flux Deployer
+        - name: SLACK_ICON_EMOJI
+          value: ":heart:"
+        - name: GITHUB_URL
+          value: "https://github.com/HeroCC/infra"
+        - name: LISTEN_ADDRESS
+          value: ":3032"
+
