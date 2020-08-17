@@ -1,6 +1,5 @@
-helm-operator:
-  helm:
-    versions: v3
-  git:
-    ssh:
-      secretName: flux-git-deploy
+helm:
+  versions: v3
+git:
+  ssh:
+    secretName: flux-git-deploy
