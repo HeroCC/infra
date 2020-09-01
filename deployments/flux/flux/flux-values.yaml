@@ -6,8 +6,8 @@ git:
   pollInterval: "1m"
 additionalArgs:
   - --connect=ws://fluxcloud
-  - --sops
   - --git-gpg-key-import=/root/gpg-key
+  - --sops
 # If enabled, fluxd will delete resources that it created, but are no longer present in git
 syncGarbageCollection:
   enabled: true
