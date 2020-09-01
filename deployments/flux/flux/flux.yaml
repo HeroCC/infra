@@ -17,10 +17,9 @@ spec:
     - name: homelab-key
       secret:
         secretName: homelab-gpg-key
-        defaultMode: 0400
   extraVolumeMounts:
     - name: homelab-key
-      mount-path: /root/gpg-key/
+      mount-path: /root/gpg-key
       readOnly: true
   valuesFrom:
   - externalSourceRef:
