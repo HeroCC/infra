@@ -5,7 +5,7 @@ git:
   path: deployments
   pollInterval: "1m"
 gpgKeys:
-  secret-name: "homelab-gpg-key"
+  secretName: "homelab-gpg-key"
 sops:
   enabled: true
 additionalArgs:
