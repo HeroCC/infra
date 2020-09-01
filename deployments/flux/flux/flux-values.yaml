@@ -4,8 +4,8 @@ git:
   branch: master
   path: deployments
   pollInterval: "1m"
-gpg:
-  secret-name: homelab-gpg-key
+gpgKeys:
+  secret-name: "homelab-gpg-key"
 sops:
   enabled: true
 additionalArgs:
