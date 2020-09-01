@@ -13,17 +13,15 @@ spec:
     repository: https://charts.fluxcd.io/
     name: flux
     version: 1.4.1
-  volumes:
+  extraVolumes:
     - name: homelab-key
       secret:
         secretName: homelab-gpg-key
         defaultMode: 0400
-  containers:
-    - name: flux
-      volumeMounts:
-        - name: homelab-key
-          mount-path: /root/gpg-key/
-          readOnly: true
+  extraVolumeMounts:
+    - name: homelab-key
+      mount-path: /root/gpg-key/
+      readOnly: true
   valuesFrom:
   - externalSourceRef:
       url: https://raw.githubusercontent.com/herocc/infra/master/deployments/flux/flux/flux-values.yaml
