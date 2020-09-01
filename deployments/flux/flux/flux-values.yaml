@@ -4,10 +4,12 @@ git:
   branch: master
   path: deployments
   pollInterval: "1m"
+gpg:
+  secret-name: homelab-gpg-key
+sops:
+  enabled: true
 additionalArgs:
   - --connect=ws://fluxcloud
-  - --git-gpg-key-import=/root/gpg-key
-  - --sops
 # If enabled, fluxd will delete resources that it created, but are no longer present in git
 syncGarbageCollection:
   enabled: true
