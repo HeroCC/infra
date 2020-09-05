@@ -1,0 +1,66 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: asf-configmap
+    namespace: default
+data:
+    ASF.json: |
+        {
+          "Headless": true,
+          "IPC": true,
+          "s_SteamOwnerID": "76561198078125364",
+          "SteamTokenDumperPluginEnabled": true
+        }
+    HC1.json: |
+        {
+          "Enabled": true,
+          "SteamLogin": "heroicbot1",
+          "PasswordFormat": "1",
+          "SteamPassword": "toNKb0hdWcdcT8/ETB/ykUIocovmQoWmN4Q5MW3BvNwwAvVhEDpWIB4FXtVs9+KX",
+          "s_SteamMasterClanID": "103582791456061651",
+          "UseLoginKeys": false,
+          "AutoSteamSaleEvent": true
+        }
+    HC1.maFile: ENC[AES256_GCM,data:l5c7xTwS40sFjPU8/9rGer0b3oRIwww5hWgCrhap6kdQ30ASbybyq0gJYaoGzAzDQcCdTntWRjOgS4lO+CdS41CgT7Oy5XBKFXBUoe36ggTE/KTvjZXh6JJeAsnzFFm6vXp+S8EcSP/nr/GtCBSJXwY2Gu5QBliViQ2HCixNC1Pcogf0l4PacZzfrFNIoeVOzhZ2Q0Zsfk2MRN6s,iv:LLP2CrR8J+DSm03lvWfrb0gD3JniTQQIWsQOGsxMikw=,tag:Me5JXkxQp2FibAffu2pNbg==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    lastmodified: '2020-09-05T16:59:12Z'
+    mac: ENC[AES256_GCM,data:jRvyUTX3NqF+02EJuAMR3J+eKJ1yDubcDYE1qXYTLUDD+BuG2yunO0Zm3VIGOOmmAw6vm60egn4XVvUQARsPzhHC6A2iUFXW+18PHKLt+hVsO8cHxfEvsGTigZPytboPmRud2da6sy2pjLder5W/1cx1LMC6jBy/TJsuoX7bDHM=,iv:JU7yLorLtaWxHUfWozxkjOKtAaPzzrydWgjkSo80omM=,tag:0aIDJrtRX5luZpAIvpwI6Q==,type:str]
+    pgp:
+    -   created_at: '2020-09-05T16:54:39Z'
+        enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7R8OyOD8bjEAQ//as7tiU2I2GFph4Jb5mPEc9OGbOMj6fYhRdDdORj6MZuQ
+            RR36NzvLCmZeYU8K0wlPGGrffoxcwQGiZY+WZNESkwLvO0UvqEwJyulpL7aBlrUq
+            zpeeu8TalEQmyQuNt8PS7Ih0wfGkorbO69c+HsFERae3MZwq6x+unwWmjSQd9iO8
+            nT0pG5TThpaXEhQlaUqRNjxKvP7b38kXY62G5/iAkWjKtTVOYEoxiJD4vyQn80Vi
+            1bJWagtSgPGSEm/NAHtbqtzZ0fllgoEDyaIBrb9Lv+hZomOqefDe2vXoQZ/TbXNl
+            jWhc/By+FyS1iHo25+4cYjWNs82T2LcEIpql8zvEFMAXsgHKJA+hCvAJ2Bs6c7g1
+            BqEuNY+M4m1+52nU8CzVI/ODHVD7aLwAwR7SPiXeTDdcnJnC68uvS6rL082aBvul
+            r7H7l8u1mEF5N3RgkAn3/dUSmbWHpQBQ2902eeTYYOpnUoSg197WGoC0HNXV2D9X
+            Zxo2usxfuFga4ZFJzvp1QpnubYt/hQmSW6I7bjL6F9ARBXKYQaJ/yfw2m50LqfXf
+            5VxYSIvUcgohx1cpzp8cSf/1KAwHecC1iQT140BCbHAmUeIVrzKofT4TU8MLe0kb
+            ym7IrtNMt80MlF7bfb8kND3ojBcaYzNOnAecdS5Dv8oWCZAf6uSCzmj6CA/GPN/S
+            XgGU4wgy0UKZWNtmTuzpBe/UejCGVF/GsQWEoR9DQQxGlVuQJmLyh3bLyRCsx8G1
+            JZdT+5sYmglN1+HxX3OCEqHCW0VDYXCYpap8daOKAMxGw1T5RoviQCqZ9JvhHVw=
+            =gfZI
+            -----END PGP MESSAGE-----
+        fp: C8A1E2D47C35AB1C30288640940ED79CFA122C1A
+    -   created_at: '2020-09-05T16:54:39Z'
+        enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hIwD5/DIMlnnmvcBBACNE2NOA+pVOcR6ScBRkr/2AOLWQi2KIDNN3FKTb6DoF3Wm
+            mwbyLS2Qj6UxZe7OSBas2oTcPSPy5iCf1wE1PaLE/k0r1rf2Kl5hybPzIT5/HNzo
+            ncatR3Xnk53oQaptS3DjRYXJg3laYCp9L7jer7Ykb3pgvOSZCbvhJBvYpGuR4NJe
+            ARkc+GrkR9jLRdALZLmWXHc8QO5YhEAF9fJz6UsEVklVy7lqldJSgB03zLwo+f+r
+            Rjr3/gfg8mWYPWyyoANTotT0DK04pbVHUClQp2qw3MRMY5JiM2B5+FbxjGvNsQ==
+            =2DPD
+            -----END PGP MESSAGE-----
+        fp: FEAE1C9C842D48A03C02C8BF23D2AAAD58DECDA0
+    encrypted_suffix: .maFile
+    version: 3.6.0
