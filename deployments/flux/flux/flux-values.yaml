@@ -6,7 +6,7 @@ git:
   pollInterval: "1m"
 gpgKeys:
   secretName: "homelab-gpg-key"
-["sops"]:
+sops:
   enabled: true
 additionalArgs:
   - --connect=ws://fluxcloud
