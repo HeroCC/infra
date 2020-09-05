@@ -7,8 +7,13 @@ metadata:
 data:
   ASF.json: >
     {
+      "Headless": true,
       "IPC": true,
       "s_SteamOwnerID": "76561198078125364",
       "SteamTokenDumperPluginEnabled": true
+    }
+  HC1.json: >
+    {
+      "PasswordFormat": 1
     }
 
