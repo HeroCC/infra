@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: asf
-        image: justarchi/archisteamfarm:master
+        image: justarchi/archisteamfarm:4.3.0.2
         ports:
           - containerPort: 1242
         envFrom:
