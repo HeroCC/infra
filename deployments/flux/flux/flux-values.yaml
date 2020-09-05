@@ -6,7 +6,8 @@ git:
   pollInterval: "1m"
 gpgKeys:
   secretName: "homelab-gpg-key"
-sops.enabled: true
+["sops"]:
+  enabled: true
 additionalArgs:
   - --connect=ws://fluxcloud
 # If enabled, fluxd will delete resources that it created, but are no longer present in git
