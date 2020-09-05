@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: hitleap-creds
+    namespace: default
+type: Opaque
+data:
+    HITLEAP_USER: ENC[AES256_GCM,data:tBZbp+eVfz+DLk0q,iv:0yYhc0DRsG+V9L6QFH+lPeMGKlqS0BNdcdNr9QB4u/g=,tag:h/KAaxwWTI/kaUzqKcf1Tw==,type:str]
+    HITLEAP_PASS: ENC[AES256_GCM,data:XvXe+2Rd3v8JrIHCBltsMP3rZE4QzFjD,iv:3jZD/IdmHwk4/EWJKLDKUyhal/u0PJmHbavDil17Oio=,tag:xMa10YghwjaltkJhchtfEw==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    lastmodified: '2020-09-05T20:00:33Z'
+    mac: ENC[AES256_GCM,data:kmExFoPUinZI0wH4cNxwQ6Q/C3Y/w+1eZ3uhFuHuJETLWiIUuc3beO1Eur6Ljauh12jpwZHugbrZwlS428FrxEStiDoHgau8WPb66JK0PYhVfs91hV3JhUKgem6nmaERKbJgJ0MAvGduMWkl6k6LE/BZHihqYdchUmDs2YhXtuU=,iv:M2sLt/6ychlAy/TBFTx9Ki3KED6a9XoHKNbHx49IONY=,tag:1b+HuF1A5OB+1ylTsPpHZg==,type:str]
+    pgp:
+    -   created_at: '2020-09-05T19:58:33Z'
+        enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7R8OyOD8bjEAQ//TKxP+fyNeRg8wAGBMUZ18bJ8hAGDKuZZ/kzKl3GYz6EF
+            uJfLSdFw5MFAsFOZLvBgBXQyN+/AsgeA1Uczk5w285PpapNm6YqufVbfSgSTcqyO
+            2FSwWFpeSxRYgeL2voFnpRVZeu6jlROeIC1E4DtTAG45BSQhuBQJCWT9TOlu1MwI
+            lHPmKlh8P0EqkxLlfjB4ttW+13RzYhIICJ1CUR8WPTJoffLZY1osQXH97QauxE0j
+            IN9xK2k4v7Rg+rIDKdRwiBVqJPwF2KoeRt0W3SmF4W5I2hXaUizi5QG/5iLJMuJU
+            ogQMhJFjkyM8vEGkdhHDAqdH3vQa2hG9B6L4XuyDh+X62ELZ5j6DEo0j2+3C0zTJ
+            UtjB5Oy+oTVQvzAG4g0MNRQzh0SoUhMtbGF4FdKfyPqeswtnK+eK8onpIcfZoU9k
+            fTKO/3GXz5wJh6lo8ZjbjVLV0h9kae1R6nVxy7PIBwGx6BXBIx6ZLeR9ukDC3GzM
+            22GZNUWSO91bDB+oKSDEsAn3rp0ooabxarPDvsrEYT3hTM6H0CqygLv5TgqbbjyV
+            1hz9LiuQsMI5M050rTqzagVXlTSpNcBXwX9FkUvjgIuRys2hHrX+2nNxM2EMHa8a
+            5qxqD+mSURpm18oISrRoMO8pcwanqLWT3NAROp/y4l0qgSI3+aipkkc7VGSXiezS
+            XgFPFSAq07ChTcZa9PVQ8e9C6ZXHMMhfK1jaZ5VlpIJzdfIeF2jEM8G6R11rYtZj
+            vU2Qak/WY6fBSeBkjjIues8FE0zJLVrnka+4BEAfGEx8GndGMMNJncNhEnhbKgk=
+            =+orp
+            -----END PGP MESSAGE-----
+        fp: C8A1E2D47C35AB1C30288640940ED79CFA122C1A
+    -   created_at: '2020-09-05T19:58:33Z'
+        enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hIwD5/DIMlnnmvcBA/9AcUJUd6eqlskCwtqVbbVcc/xxQx2mrlRRQPyYqkOW5yvP
+            6W/5rpFtBLiZntqbPRrxeTh4LxqhZzPuJOmAbWiOWhNOKVrQHC6E1vBn9JtUTW9C
+            D9oiBZJxus38gHO+k3dKXd8IFfDtfNtuP60qD7H01YcVYKw/bGOQuw/8+dtgONJe
+            AeOdTgHrnH3fFHgUjUlvbVifczBL8sqFzTN51PkAylYJcbDC+ucdm8U6tNmiYE+9
+            3Rmpk7aPE+qPqU09jk55YGreRhg/Bk/8xmwzSki/AFOb5q7yTzv3Lmf2EVplfw==
+            =D8kW
+            -----END PGP MESSAGE-----
+        fp: FEAE1C9C842D48A03C02C8BF23D2AAAD58DECDA0
+    encrypted_regex: ^(data|stringData)$
+    version: 3.6.0
