@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: asf
-        image: justarchi/archisteamfarm:4.3.0.2
+        image: justarchi/archisteamfarm:master
         envFrom:
           - secretRef:
               name: asf-cryptkey
