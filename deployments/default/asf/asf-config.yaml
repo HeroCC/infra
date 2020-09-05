@@ -14,6 +14,11 @@ data:
     }
   HC1.json: >
     {
-      "PasswordFormat": 1
+      "Enabled": true,
+      "SteamLogin": "heroicbot1",
+      "PasswordFormat": "1",
+      "SteamPassword": "toNKb0hdWcdcT8/ETB/ykUIocovmQoWmN4Q5MW3BvNwwAvVhEDpWIB4FXtVs9+KX",
+      "s_SteamMasterClanID": "103582791456061651",
+      "AutoSteamSaleEvent": true
     }
 
