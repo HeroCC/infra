@@ -31,6 +31,7 @@ spec:
         volumeMounts:
           - name: asf-config-volume
             mountPath: /app/config
+            readOnly: false
       volumes:
         - name: asf-config-volume
           configMap:
