@@ -21,14 +21,35 @@ data:
           "UseLoginKeys": false,
           "AutoSteamSaleEvent": true
         }
+    HC2.json: |
+        {
+          "Enabled": true,
+          "SteamLogin": "heroicb2",
+          "PasswordFormat": "1",
+          "SteamPassword": "toNKb0hdWcdcT8/ETB/ykUIocovmQoWmN4Q5MW3BvNwwAvVhEDpWIB4FXtVs9+KX",
+          "s_SteamMasterClanID": "103582791456061651",
+          "UseLoginKeys": false,
+          "AutoSteamSaleEvent": true
+        }
+    HC3.json: |
+        {
+          "Enabled": true,
+          "SteamLogin": "stheamy3",
+          "PasswordFormat": "1",
+          "SteamPassword": "toNKb0hdWcdcT8/ETB/ykUIocovmQoWmN4Q5MW3BvNwwAvVhEDpWIB4FXtVs9+KX",
+          "s_SteamMasterClanID": "103582791456061651",
+          "UseLoginKeys": false,
+          "AutoSteamSaleEvent": true
+        }
     HC1.maFile: ENC[AES256_GCM,data:l5c7xTwS40sFjPU8/9rGer0b3oRIwww5hWgCrhap6kdQ30ASbybyq0gJYaoGzAzDQcCdTntWRjOgS4lO+CdS41CgT7Oy5XBKFXBUoe36ggTE/KTvjZXh6JJeAsnzFFm6vXp+S8EcSP/nr/GtCBSJXwY2Gu5QBliViQ2HCixNC1Pcogf0l4PacZzfrFNIoeVOzhZ2Q0Zsfk2MRN6s,iv:LLP2CrR8J+DSm03lvWfrb0gD3JniTQQIWsQOGsxMikw=,tag:Me5JXkxQp2FibAffu2pNbg==,type:str]
+    HC2.maFile: ENC[AES256_GCM,data:FzmV652Ec3c0g4PxcwiuxaLUBdyHSyT5chWtcLwskoSxOdB4iTFa0YqKKz2xxoYo74o6qPCjHOENyT+DtS9PJH3wcjrfTBnb5939nS62tBE1v8vJlf2pPFGea2R3xC4hJmsXdsKeMajnL5LIKwSUbqgwiKgRQG61McelUebIYPJaJxMbjNhdi6g7SMq+MeA6U65+/p68LYDFDdng,iv:zNZiF9pUfdbFIWaagrNX8eek+0hp8zUk5J2ADBZdK4g=,tag:qpoy9zxTLGZAjWcxXFKz+Q==,type:str]
 sops:
     kms: []
     gcp_kms: []
     azure_kv: []
     hc_vault: []
-    lastmodified: '2020-09-05T16:59:12Z'
-    mac: ENC[AES256_GCM,data:jRvyUTX3NqF+02EJuAMR3J+eKJ1yDubcDYE1qXYTLUDD+BuG2yunO0Zm3VIGOOmmAw6vm60egn4XVvUQARsPzhHC6A2iUFXW+18PHKLt+hVsO8cHxfEvsGTigZPytboPmRud2da6sy2pjLder5W/1cx1LMC6jBy/TJsuoX7bDHM=,iv:JU7yLorLtaWxHUfWozxkjOKtAaPzzrydWgjkSo80omM=,tag:0aIDJrtRX5luZpAIvpwI6Q==,type:str]
+    lastmodified: '2020-09-05T17:38:08Z'
+    mac: ENC[AES256_GCM,data:Mhzq7IbxJkYlz2XqranAjo+uafzZo6iPDlmQBTRs8nH00vZb85fEkg+c2J5j6Q1dZQzzxaKUSZ+erEwTgpNBmMTCI5nIUSNOyC25kn6oyRE7Vo6E3oEfS+A+n7CG00+a2lU7i6kRQ3e80F1MMOfzK4kl+GszWBtUMoBtxQGEmYM=,iv:UwxIY9QdDxnANrivgfUoxgWr7FMjBSpqQvBtSa35+jw=,tag:HknQg5ZIXmfqEOPCiHNKXg==,type:str]
     pgp:
     -   created_at: '2020-09-05T16:54:39Z'
         enc: |
