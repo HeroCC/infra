@@ -5,7 +5,7 @@ metadata:
   name: asf-configmap
   namespace: default
 data:
-  asf.json: >
+  ASF.json: >
     {
       "s_SteamOwnerID": "76561198078125364",
       "SteamTokenDumperPluginEnabled": true
