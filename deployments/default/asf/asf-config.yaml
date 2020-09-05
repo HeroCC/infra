@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: asf-configmap
+  namespace: default
+data:
+  asf.json: >
+    {
+      "s_SteamOwnerID": "76561198078125364",
+      "SteamTokenDumperPluginEnabled": true
+    }
+

@@ -3,7 +3,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: asf-deployment
+  name: asf
+  namespace: default
   labels:
     app: asf
   annotations:
@@ -22,4 +23,11 @@ spec:
       containers:
       - name: asf
         image: justarchi/archisteamfarm:4.3.0.2
+        volume-mounts:
+          - name: asf-config-volume
+            mountPath: /app/config
+      volumes:
+        - name: asf-config-volume
+          configMap:
+            name: asf-configmap
 
