@@ -1,0 +1,25 @@
+# ArchiSteamFarm 
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: asf-deployment
+  labels:
+    app: asf
+  annotations:
+    fluxcd.io/automated: "true"
+    fluxcd.io/tag.asf: glob:~4.3.*.*
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: asf
+  template:
+    metadata:
+      labels:
+        app: asf
+    spec:
+      containers:
+      - name: asf
+        image: justarchi/archisteamfarm:4.3.0.2
+
