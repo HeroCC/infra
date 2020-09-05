@@ -23,6 +23,9 @@ spec:
       containers:
       - name: asf
         image: justarchi/archisteamfarm:4.3.0.2
+        envFrom:
+          - secretRef:
+              name: asf-cryptkey
         volumeMounts:
           - name: asf-config-volume
             mountPath: /app/config
