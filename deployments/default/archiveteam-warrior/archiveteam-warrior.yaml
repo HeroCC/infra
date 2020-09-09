@@ -30,4 +30,6 @@ spec:
         env:
           - name: DOWNLOADER
             value: "HeroCC"
+          - name: SELECTED_PROJECT
+            value: "auto"
 
