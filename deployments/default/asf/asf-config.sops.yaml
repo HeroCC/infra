@@ -41,15 +41,13 @@ data:
           "UseLoginKeys": false,
           "AutoSteamSaleEvent": true
         }
-    HC1.maFile: ENC[AES256_GCM,data:l5c7xTwS40sFjPU8/9rGer0b3oRIwww5hWgCrhap6kdQ30ASbybyq0gJYaoGzAzDQcCdTntWRjOgS4lO+CdS41CgT7Oy5XBKFXBUoe36ggTE/KTvjZXh6JJeAsnzFFm6vXp+S8EcSP/nr/GtCBSJXwY2Gu5QBliViQ2HCixNC1Pcogf0l4PacZzfrFNIoeVOzhZ2Q0Zsfk2MRN6s,iv:LLP2CrR8J+DSm03lvWfrb0gD3JniTQQIWsQOGsxMikw=,tag:Me5JXkxQp2FibAffu2pNbg==,type:str]
-    HC2.maFile: ENC[AES256_GCM,data:FzmV652Ec3c0g4PxcwiuxaLUBdyHSyT5chWtcLwskoSxOdB4iTFa0YqKKz2xxoYo74o6qPCjHOENyT+DtS9PJH3wcjrfTBnb5939nS62tBE1v8vJlf2pPFGea2R3xC4hJmsXdsKeMajnL5LIKwSUbqgwiKgRQG61McelUebIYPJaJxMbjNhdi6g7SMq+MeA6U65+/p68LYDFDdng,iv:zNZiF9pUfdbFIWaagrNX8eek+0hp8zUk5J2ADBZdK4g=,tag:qpoy9zxTLGZAjWcxXFKz+Q==,type:str]
 sops:
     kms: []
     gcp_kms: []
     azure_kv: []
     hc_vault: []
-    lastmodified: '2020-09-05T17:38:08Z'
-    mac: ENC[AES256_GCM,data:Mhzq7IbxJkYlz2XqranAjo+uafzZo6iPDlmQBTRs8nH00vZb85fEkg+c2J5j6Q1dZQzzxaKUSZ+erEwTgpNBmMTCI5nIUSNOyC25kn6oyRE7Vo6E3oEfS+A+n7CG00+a2lU7i6kRQ3e80F1MMOfzK4kl+GszWBtUMoBtxQGEmYM=,iv:UwxIY9QdDxnANrivgfUoxgWr7FMjBSpqQvBtSa35+jw=,tag:HknQg5ZIXmfqEOPCiHNKXg==,type:str]
+    lastmodified: '2020-09-09T19:51:34Z'
+    mac: ENC[AES256_GCM,data:bfKwPSUAMgx6YiUT2wQl5kFfYjY4wTaTHNVFUg/6OVKjCctLmRFpY3udub/7UC2PC4XgWVQedKweVpn8fKLH6MkQEiK+jjMefgmcbhwr0exRWWMmucifbB3uSrE2/lcCVd/gpiuAKWuj1KGOeDnvRJKGDHxDB7dELhR/3jaZeQc=,iv:wkEy0HYlKI7bGQFESru1c3yQBTL46sp7ACbGDkspm2g=,tag:7VFAlbwqwwLm+hOaoryHvA==,type:str]
     pgp:
     -   created_at: '2020-09-05T16:54:39Z'
         enc: |

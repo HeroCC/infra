@@ -29,11 +29,15 @@ spec:
           - secretRef:
               name: asf-cryptkey
         volumeMounts:
-          - name: asf-config-volume
+          - name: asf-config-vol
             mountPath: /app/config
             readOnly: false
       volumes:
-        - name: asf-config-volume
-          configMap:
-            name: asf-configmap
+        - name: asf-config-vol
+          projected:
+            sources:
+              - configMap:
+                  name: asf-configmap
+              - secret:
+                  name: asf-account-creds
 
