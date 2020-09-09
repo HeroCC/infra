@@ -1,0 +1,31 @@
+# https://www.archiveteam.org/index.php?title=ArchiveTeam_Warrior
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: archiveteam-warrior
+  namespace: default
+  labels:
+    app: warrior
+  annotations:
+    fluxcd.io/automated: "false"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: warrior
+  template:
+    metadata:
+      labels:
+        app: warrior
+    spec:
+      containers:
+      - name: warrior
+        image: archiveteam/warrior-dockerfile:latest
+        resources:
+          limits:
+            ephemeral-storage: "10Gi"
+        env:
+          - name: DOWNLOADER
+            value: "HeroCC"
+
