@@ -1,0 +1,18 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: heartbeat
+  namespace: default
+spec:
+  schedule: "*/15 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: heatbeat-wget
+            image: busybox
+            args:
+            - wget 'https://hc-ping.com/a91078ee-67bb-44ee-8577-a6b5ae581172'
+          restartPolicy: OnFailure
+
