@@ -37,5 +37,5 @@ spec:
             mountPath: "/opt/magic_mirror/config"
       volumes:
         - name: mmirror-config-vol
-          - configMap:
-            name: mmirror-configmap
+          configMap:
+           name: mmirror-configmap
