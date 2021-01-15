@@ -1,4 +1,3 @@
-# MagicMirror(2)
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -22,20 +21,20 @@ spec:
     spec:
       containers:
       - name: magicmirror
-        image: bastilimbach/docker-magicmirror:v2.14.0
+        image: bastilimbach/docker-magicmirror:develop
         ports:
-          - name: web
-            containerPort: 8080
+        - name: web
+          containerPort: 8080
         env:
-          - name: TZ
-            value: "America/New_York"
+        - name: TZ
+          value: "America/New_York"
         envFrom:
-          - secretRef:
-              name: mmirror-envsecret
+        - secretRef:
+            name: mmirror-envsecret
         volumeMounts:
-          - name: mmirror-config-vol
-            mountPath: "/opt/magic_mirror/config"
-      volumes:
         - name: mmirror-config-vol
-          configMap:
-           name: mmirror-configmap
+          mountPath: "/opt/magic_mirror/config"
+      volumes:
+      - name: mmirror-config-vol
+        configMap:
+          name: mmirror-configmap
