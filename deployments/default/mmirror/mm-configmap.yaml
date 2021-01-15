@@ -1,0 +1,99 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mmirror-configmap
+  namespace: default
+  data:
+    config.json: |
+      var readEnv = function(name) {
+        // https://github.com/MichMich/MagicMirror/issues/1756
+        if (typeof process !== "undefined" && process.env[name]) {
+          return process.env[name];
+        }
+        return null;
+      };
+
+      var config = {
+        address: "0.0.0.0",
+        port: 8080,
+        basePath: "/",
+        ipWhitelist: ["127.0.0.1", "::1", "10.0.0.0/8"],
+        useHttps: false,
+        httpsPrivateKey: "",
+        httpsCertificate: "",
+
+        language: "en",
+        logLevel: ["INFO", "LOG", "WARN", "ERROR"],
+        timeFormat: 12,
+        units: "imperial",
+        serverOnly:  true,
+        modules: [
+          {
+            module: "alert",
+          },
+          {
+            module: "updatenotification",
+            position: "top_bar"
+          },
+          {
+             module: "clock",
+             position: "top_left"
+          },
+          {
+             module: "calendar",
+             header: "US Holidays",
+             position: "top_left",
+               config: {
+                  calendars: [
+                    {
+                      symbol: "calendar-check",
+                      url: "webcal://www.calendarlabs.com/ical-calendar/ics/76/US_Holidays.ics"
+                    }]
+                  }
+          },
+          {
+             module: "compliments",
+             position: "lower_third"
+          },
+          {
+            module: "currentweather",
+            position: "top_right",
+            config: {
+              location: "New York",
+              locationID: "5128581",
+              appid: readEnv("OPENWEATHER_API")
+            }
+          },
+          {
+            module: "weatherforecast",
+            position: "top_right",
+            header: "Weather Forecast",
+            config: {
+              location: "New York",
+              locationID: "5128581",
+              appid: readEnv("OPENWEATHER_API")
+            }
+          },
+          {
+            module: "newsfeed",
+            position: "bottom_bar",
+            config: {
+              feeds: [
+                {
+                   title: "New York Times",
+                   url: "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"
+                }
+              ],
+              showSourceTitle: true,
+              showPublishDate: true,
+              broadcastNewsFeeds: true,
+              broadcastNewsUpdates: true
+            }
+          },
+        ]
+      };
+
+      /*************** DO NOT EDIT THE LINE BELOW ***************/
+      if (typeof module !== "undefined") {module.exports = config;}
+

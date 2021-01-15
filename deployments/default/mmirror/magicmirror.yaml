@@ -1,0 +1,45 @@
+# MagicMirror(2)
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mmirror
+  namespace: default
+  labels:
+    app: mmirror
+  annotations:
+    fluxcd.io/automated: "true"
+    fluxcd.io/tag.asf: glob:~2.14.*
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mmirror
+  template:
+    metadata:
+      labels:
+        app: asf
+    spec:
+      containers:
+      - name: magicmirror
+        image: bastilimbach/docker-magicmirror:v2.14.0
+        ports:
+          - name: web
+            containerPort: 8080
+        env:
+          - name: TZ
+            value: "America/New_York"
+        envFrom:
+          - secretRef:
+              name: mmirror-envsecret
+        volumeMounts:
+          - name: mmirror-config-vol
+            mountPath: "/opt/magic_mirror/config"
+      volumes:
+        - name: mmirror-config-vol
+          projected:
+            sources:
+              - configMap:
+                  name: mmirror-configmap
+              - secret:
+                  name: asf-account-creds
