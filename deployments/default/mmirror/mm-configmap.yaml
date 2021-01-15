@@ -11,7 +11,7 @@ data:
       if (typeof process !== "undefined" && process.env[name]) {
         return process.env[name];
       }
-      return null;
+      return "UNSET_ENV_VAR_" + name;
     };
 
     var config = {
