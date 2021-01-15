@@ -18,7 +18,7 @@ spec:
   template:
     metadata:
       labels:
-        app: asf
+        app: mmirror
     spec:
       containers:
       - name: magicmirror
@@ -37,9 +37,5 @@ spec:
             mountPath: "/opt/magic_mirror/config"
       volumes:
         - name: mmirror-config-vol
-          projected:
-            sources:
-              - configMap:
-                  name: mmirror-configmap
-              - secret:
-                  name: asf-account-creds
+          - configMap:
+            name: mmirror-configmap
