@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: mmirror
+  name: mmirror
+  namespace: default
+spec:
+  #externalTrafficPolicy: Cluster
+  ports:
+  - name: mirrorpage
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: mmirror
+  sessionAffinity: None
+  #type: LoadBalancer
