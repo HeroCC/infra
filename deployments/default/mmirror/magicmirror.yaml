@@ -7,8 +7,7 @@ metadata:
   labels:
     app: mmirror
   annotations:
-    fluxcd.io/automated: "true"
-    fluxcd.io/tag.magicmirror: glob:~v2.14.*
+    fluxcd.io/automated: "false"
 spec:
   replicas: 1
   selector:
@@ -21,7 +20,7 @@ spec:
     spec:
       initContainers:
       - name: get-extmodules
-        image: alpine/git:1.0.24-arm64
+        image: alpine/git:latest
         command: ["/bin/sh", "-c"]
         volumeMounts:
         - name: ext-modules
