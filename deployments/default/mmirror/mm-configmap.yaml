@@ -6,10 +6,16 @@ metadata:
   namespace: default
 data:
   config.js: |
+    var remote = null;
+    if (typeof window !== "undefined") { remote = window.require("electron").remote; }
     var readEnv = function(name) {
       // https://github.com/MichMich/MagicMirror/issues/1756
       if (typeof process !== "undefined" && process.env[name]) {
         return process.env[name];
+      }
+      if (remote && remote.process.env[name]) {
+        // remote is null if the Electron nodeIntegration value isn't set to true.
+        return remote.process.env[name];
       }
       return "UNSET_ENV_VAR_" + name;
     };
@@ -27,7 +33,14 @@ data:
       logLevel: ["INFO", "LOG", "WARN", "ERROR"],
       timeFormat: 12,
       units: "imperial",
-      serverOnly:  true,
+      serverOnly: true,
+
+      electronOptions: {
+        webPreferences: {
+          nodeIntegration: true
+        }
+      },
+
       modules: [
         {
           module: "alert",
