@@ -19,6 +19,25 @@ spec:
       labels:
         app: mmirror
     spec:
+      initContainers:
+        - name: get-extmodules
+          image: alpine/git:latest
+          command: ["/bin/sh", "-c"]
+          volumeMounts:
+            - name: ext-modules
+              mountPath: "/modules"
+          args:
+            - "cd /modules ;"
+            - "git clone https://github.com/MMM-CalendarExt2/MMM-CalendarExt2.git ;"
+        - name: build-extmodules
+          image: node:lts-slim
+          command: ["/bin/sh", "-c"]
+          volumeMounts:
+            - name: ext-modules
+              mountPath: "/modules"
+          args:
+            - "cd /modules ;"
+            - 'for d in ./*/; do (cd "$d" && npm install) ; done ;'
       containers:
       - name: magicmirror
         image: bastilimbach/docker-magicmirror:v2.14.0
@@ -32,16 +51,14 @@ spec:
         - secretRef:
             name: mmirror-envsecret
         volumeMounts:
-        - name: mmcal2-module
-          mountPath: "/opt/magic_mirror/modules/MMM-CalendarExt2"
+        - name: ext-modules
+          mountPath: "/opt/magic_mirror/modules/ext"
         - name: mmirror-config-vol
           mountPath: "/opt/magic_mirror/config/config.js.template"
           subPath: "config.js.template"
       volumes:
-      - name: mmcal2-module
-        gitRepo:
-          repository: "https://github.com/MMM-CalendarExt2/MMM-CalendarExt2.git"
-          revision: "d922147466f04f52a38d83cf03bd54c7454b60d7"
+      - name: ext-modules
+        emptyDir: {}
       - name: mmirror-config-vol
         configMap:
           name: mmirror-configmap

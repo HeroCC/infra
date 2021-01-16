@@ -48,7 +48,7 @@ data:
            }
         },
         {
-          module: "MMM-CalendarExt2/MMM-CalendarExt2",
+          module: "ext/MMM-CalendarExt2",
           config: {
             calendars : [
               {
