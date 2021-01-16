@@ -36,14 +36,36 @@ data:
         {
            module: "calendar",
            header: "US Holidays",
+           disabled: true,
            position: "top_left",
-             config: {
-                calendars: [
-                  {
-                    symbol: "calendar-check",
-                    url: "webcal://www.calendarlabs.com/ical-calendar/ics/76/US_Holidays.ics"
-                  }]
-                }
+           config: {
+             calendars: [
+               {
+                 symbol: "calendar-check",
+                 url: "webcal://www.calendarlabs.com/ical-calendar/ics/76/US_Holidays.ics"
+               }
+             ]
+           }
+        },
+        {
+          module: "MMM-CalendarExt2",
+          config: {
+            calendars : [
+              {
+                url: "https://www.google.com/calendar/ical/ovb564thnod82u5c4njut98728%40group.calendar.google.com/public/basic.ics",
+              },
+            ],
+            views: [
+              {
+                mode: "daily",
+              },
+            ],
+            scenes: [
+              {
+                name: "DEFAULT",
+              },
+            ],
+          }
         },
         {
            module: "compliments",
