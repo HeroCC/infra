@@ -27,8 +27,9 @@ spec:
             - name: ext-modules
               mountPath: "/modules"
           args:
-            - "cd /modules ;"
-            - "git clone https://github.com/MMM-CalendarExt2/MMM-CalendarExt2.git ;"
+            - |
+              cd /modules
+              git clone https://github.com/MMM-CalendarExt2/MMM-CalendarExt2.git
         - name: build-extmodules
           image: node:lts-slim
           command: ["/bin/sh", "-c"]
@@ -36,8 +37,9 @@ spec:
             - name: ext-modules
               mountPath: "/modules"
           args:
-            - "cd /modules ;"
-            - 'for d in ./*/; do (cd "$d" && npm install) ; done ;'
+            - |
+              cd /modules
+              for d in ./*/; do (cd "$d" && npm install) ; done
       containers:
       - name: magicmirror
         image: bastilimbach/docker-magicmirror:v2.14.0
