@@ -8,7 +8,7 @@ metadata:
     app: mmirror
   annotations:
     fluxcd.io/automated: "true"
-    fluxcd.io/tag.asf: glob:~2.14.*
+    fluxcd.io/tag.magicmirror: glob:~v2.14.*
 spec:
   replicas: 1
   selector:
@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: magicmirror
-        image: bastilimbach/docker-magicmirror:develop
+        image: bastilimbach/docker-magicmirror:v2.14.0
         ports:
         - name: web
           containerPort: 8080
