@@ -33,7 +33,8 @@ spec:
             name: mmirror-envsecret
         volumeMounts:
         - name: mmirror-config-vol
-          mountPath: "/opt/magic_mirror/config"
+          mountPath: "/opt/magic_mirror/config/config.js.template"
+          subPath: "config.js.template"
       volumes:
       - name: mmirror-config-vol
         configMap:
