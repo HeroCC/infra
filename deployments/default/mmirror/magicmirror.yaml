@@ -33,7 +33,7 @@ spec:
             name: mmirror-envsecret
         volumeMounts:
         - name: mmcal2-module
-          mountPath: "/opt/magic_mirror/modules/MMM-CalendarExt2"
+          mountPath: "/opt/magic_mirror/modules"
         - name: mmirror-config-vol
           mountPath: "/opt/magic_mirror/config/config.js.template"
           subPath: "config.js.template"
