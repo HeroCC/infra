@@ -5,7 +5,7 @@ metadata:
   name: mmirror-configmap
   namespace: default
 data:
-  config.js: |
+  config.js.template: |
     var config = {
       address: "0.0.0.0",
       port: 8080,
