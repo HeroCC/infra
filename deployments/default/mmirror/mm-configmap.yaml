@@ -32,7 +32,7 @@ data:
         },
         {
            module: "calendar",
-           header: "US Holiday",
+           header: "Schedule",
            position: "top_left",
            config: {
              maximumNumberOfDays: 3,
@@ -40,8 +40,16 @@ data:
              coloredSymbolOnly: false,
              calendars: [
                {
-                 symbol: "calendar-check",
-                 url: "webcal://www.calendarlabs.com/ical-calendar/ics/76/US_Holidays.ics"
+                 symbol: "book-open",
+                 url: "${CLASS_SCHEDULE_CAL}"
+               },
+               {
+                 symbol: "graduation-cap",
+                 url: "${SCHOOL_SCHEDULE_CAL}"
+               },
+               {
+                 symbol: "user",
+                 url: "${PERSONAL_SCHEDULE_CAL}"
                }
              ]
            }
