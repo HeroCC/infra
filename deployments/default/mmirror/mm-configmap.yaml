@@ -12,11 +12,8 @@ data:
       basePath: "/",
       ipWhitelist: ["127.0.0.1", "::1", "10.0.0.0/8"],
       useHttps: false,
-      httpsPrivateKey: "",
-      httpsCertificate: "",
 
       language: "en",
-      logLevel: ["INFO", "LOG", "WARN", "ERROR"],
       timeFormat: 12,
       units: "imperial",
       serverOnly: true,
@@ -35,10 +32,12 @@ data:
         },
         {
            module: "calendar",
-           header: "US Holidays",
-           disabled: true,
+           header: "US Holiday",
            position: "top_left",
            config: {
+             maximumNumberOfDays: 3,
+             colored: true,
+             coloredSymbolOnly: false,
              calendars: [
                {
                  symbol: "calendar-check",
@@ -48,7 +47,8 @@ data:
            }
         },
         {
-          module: "ext/MMM-CalendarExt2",
+          module: "MMM-CalendarExt2",
+          disabled: true,
           config: {
             calendars : [
               {
