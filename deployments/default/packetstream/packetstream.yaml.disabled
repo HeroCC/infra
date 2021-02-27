@@ -1,0 +1,28 @@
+# https://packetstream.io/?psr=cCM
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: packetstream
+  namespace: default
+  labels:
+    app: packetstream
+  annotations:
+    fluxcd.io/automated: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: packetstream
+  template:
+    metadata:
+      labels:
+        app: packetstream
+    spec:
+      containers:
+      - name: psclient
+        image: packetstream/psclient:latest
+        env:
+          - name: CID
+            value: "cCM"
+
