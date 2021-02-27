@@ -1,0 +1,39 @@
+# https://r.honeygain.me/CONLA7C5
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: honeygain
+  namespace: default
+  labels:
+    app: honeygain
+  annotations:
+    fluxcd.io/automated: "false"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: honeygain
+  template:
+    metadata:
+      labels:
+        app: honeygain
+    spec:
+      containers:
+      - name: honeygain
+        image: honeygain/honeygain@sha256:a2e90f407a4041633e01dfe7668b654baad8d8a66fbb6e1ee5964a8c2381047d
+        args:
+          - "-tou-accept"
+          - "-email"
+          - "$(HONEYGAIN_USER)"
+          - "-pass"
+          - "$(HONEYGAIN_PASS)"
+          - "-device"
+          - "k8s-$(POD_NAME)"
+        envFrom:
+          - secretRef:
+              name: honeygain-creds
+        env:
+          - name: POD_NAME
+            valueFrom: {fieldRef: {fieldPath: metadata.name}}
+
