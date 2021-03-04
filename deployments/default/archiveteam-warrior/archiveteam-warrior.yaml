@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: warrior
-        image: archiveteam/warrior-dockerfile:latest
+        image: atdr.meo.ws/archiveteam/warrior-dockerfile:latest
         resources:
           limits:
             ephemeral-storage: "10Gi"
