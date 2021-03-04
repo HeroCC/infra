@@ -19,6 +19,17 @@ spec:
       labels:
         app: packetstream
     spec:
+      hostAliases:
+      # Seemingly, GTAV was blocked after I started this container
+      # Blacklist all the domains I know of, try to stop any potential spam
+      # Hopefully this fixes things
+      - ip: 127.0.0.1
+        hostnames:
+        - "socialclub.rockstargames.com"
+        - "rockstargames.com"
+        - "signin.rockstargames.com"
+        - "view.rockstargames.com"
+        - "support.rockstargames.com"
       containers:
       - name: psclient
         image: packetstream/psclient:latest
