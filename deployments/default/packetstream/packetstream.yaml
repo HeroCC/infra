@@ -20,16 +20,34 @@ spec:
         app: packetstream
     spec:
       hostAliases:
-      # Seemingly, GTAV was blocked after I started this container
+      # A few services seem to dislike it when I run packetstream
       # Blacklist all the domains I know of, try to stop any potential spam
       # Hopefully this fixes things
       - ip: 127.0.0.1
         hostnames:
+        # Rockstar Games
         - "socialclub.rockstargames.com"
         - "rockstargames.com"
         - "signin.rockstargames.com"
         - "view.rockstargames.com"
         - "support.rockstargames.com"
+        # Spotify related issues (domains from https://www.netify.ai/resources/applications/spotify)
+        - "audio-ak-spotify-com.akamaized.net"
+        - "audio-akp-bbr-spotify-com.akamaized.net"
+        - "audio4-ak-spotify-com.akamaized.net"
+        - "heads-ak-spotify-com.akamaized.net"
+        - "pscdn.co"
+        - "scdn.co"
+        - "spotify-com.akamaized.net"
+        - "spotify.com"
+        - "spotify.com.edgesuite.net"
+        - "spotify.demdex.net"
+        - "spotify.edgekey.net"
+        - "spotify.map.fastly.net"
+        - "spotifycdn.com"
+        - "spotifycdn.map.fastly.net"
+        - "spotifycdn.net"
+        - "spotilocal.com"
       containers:
       - name: psclient
         image: packetstream/psclient:latest
