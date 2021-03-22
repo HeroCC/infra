@@ -1,0 +1,31 @@
+# https://lichess.org/@/Her0CC
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fishnet
+  namespace: default
+  labels:
+    app: fishnet
+  annotations:
+    fluxcd.io/automated: "false"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fishnet
+  template:
+    metadata:
+      labels:
+        app: fishnet
+    spec:
+      containers:
+      - name: lichess-fishnet
+        image: niklasf/fishnet:2.2.6
+        envFrom:
+          - secretRef:
+              name: fishnet-creds
+        env:
+          - name: CORES
+            value: 1
+
