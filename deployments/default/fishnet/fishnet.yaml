@@ -27,5 +27,5 @@ spec:
               name: fishnet-creds
         env:
           - name: CORES
-            value: 1
+            value: "1"
 
