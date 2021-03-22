@@ -28,4 +28,8 @@ spec:
         env:
           - name: CORES
             value: "1"
+          - name: USER_BACKLOG
+            value: "15s"
+          - name: SYSTEM_BACKLOG
+            value: "1m"
 
