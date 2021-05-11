@@ -8,7 +8,6 @@ metadata:
   labels:
     app: warrior
   annotations:
-    fluxcd.io/automated: "false"
     kubernetes.io/ingress-bandwidth: "10M"
     kubernetes.io/egress-bandwidth: "10M"
 spec:
