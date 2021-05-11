@@ -1,7 +1,7 @@
 creation_rules:
 
   # Only encrypt kubernetes secret data
-  - path_regex: deployments/.*\.yaml$
+  - path_regex: .*.yaml
     encrypted_regex: '^(data|stringData)$'
     pgp: >-
       C8A1E2D47C35AB1C30288640940ED79CFA122C1A,
