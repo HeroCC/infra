@@ -21,6 +21,10 @@ spec:
   interval: 10m0s
   path: ./clusters/personal
   prune: true
+  decryption:
+    provider: sops
+    secretRef:
+      name: homelab-gpg-key
   sourceRef:
     kind: GitRepository
     name: flux-system
