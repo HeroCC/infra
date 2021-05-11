@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: discord-webhook
+    namespace: flux-system
+type: Opaque
+data:
+    address: ENC[AES256_GCM,data:aPlDX434pzULeh91Jee4rXVcGg0ElUalAk0DnQj24ljYSdDeq2cLfX6/Lp9CMKVrLht2V3A8zfMle/LGowFt5BfUa/5OJ3M7KKHKAyravSVdgo0yLIYKX+75lHuoXVxEhWaq4+nUv2YWAl9q7L+RZwzmGMiTt7F6,iv:B2EWNP7W87F+RvtVF3TnMsEtuWOBwULtDR1aVsrtzFI=,tag:FFVLRD05U5XqHATdURWGTA==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    lastmodified: '2021-05-11T03:29:06Z'
+    mac: ENC[AES256_GCM,data:YL4c62wbo+tXxqCN0yyfKVii29lM8YSZpyIilfC/+NiqiltMuFSkspGXklqSD5zMIS3AzX2LB+Mgzzqxd+SRPoQymOPzmip36AsMRdOrUTDn8HcKzwXWgKTcPmD3Dz8Hm5L5V13dLoPlC+FXegZjOZR2YWCCt2u9i8qYR/tRk3c=,iv:fGSs3clVwy/5gz+FqksO/e0xMJqFc8hXW31Hu3U9FKI=,tag:+PvvcjU/Jd5TgjQi1yvzMg==,type:str]
+    pgp:
+    -   created_at: '2020-09-01T21:52:58Z'
+        enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7R8OyOD8bjEARAAgjA1HcQ1jtVPvMm/6+XJEPygYK5oy6NHxUFTjbXHaS/5
+            KUIJv62Aj89zlCbelxPqfKH8VKghAJEKfj6UbVngKvVnucYU1ayZeaOxJy5HigdK
+            DHpkS1zNAq8J6CLNU4a7gciifkYq7GvmTifNBvdwPy3VcaQu9NGFFcGTlrQ7yskB
+            sKQBy+mobf8695WOZFYmIP6OjFAPpSzZUCHg0B74tmDcDBRf/A46dzw5hr/TRnt3
+            XDq/cQfaqk6maML3Sw0oMwqA0wcWFYhrsozo8+FKQ1+mT7y4WelzOIh45nb+tJ2R
+            r619EHJXmeQbsZ3lAKBOIaocijjtWz7cH6JdNwg27DBDE31B2GIqZgpuAuhb2doh
+            syBbO57rROv1UUUTOQxIs9UWAAWZs0Xe+m1jaH6xWnTahUo9a9UussfOEWGBwEbI
+            pZB7JhV2U+1stHWGIGbfnfYc2eAl2nsNOdBeED6G/C2vjdPC2q3DPSPB3NCMty13
+            pvUvEybbKJ+KLsSLn13MDyzlk0vhSHCf3rqtz8Q5oSeXFZ6/VeeSr4nQyRCb3xy8
+            3XnykVQD9jDYGLZGWvb3DGs4GbAD7TuNPjG2Q+L4wSHaA+x36TximX8/jEncPFoX
+            kawr5L4Ity4A+C4Bdr1iVeBkCf/J4qQarQ0TlzOrfjaP/O2beo76WLzyPXi5oQzS
+            XgHlIh9MqWL3UtW1TOH3ESz/vgf53e5qWAqnQ28/pFyVUfvpR9gFjCCu0ltA3nQ7
+            ithc03EWe7WSueMbbmStPB+c5PG9jZwWfQlWzK8D0gurszTfjm2wbN+IdpTHRGk=
+            =d0e1
+            -----END PGP MESSAGE-----
+        fp: C8A1E2D47C35AB1C30288640940ED79CFA122C1A
+    -   created_at: '2020-09-01T21:52:58Z'
+        enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hIwD5/DIMlnnmvcBA/9Xm7fvr4R7lvPxHi0cBg7791b7R12Umf8fnwY4LpkzxcQX
+            TEiCNbHjrP8wK+hM9e65/2+/MIr0z2uBtkjsxq1D/1QruL42nfzgQPPzIW3WpPNS
+            L6b+N0tTw09GvFvnp7imrrsKHq4jZOUIT/JURtkN2FJNWyvzGUUNSmlTTsctJNJe
+            AXu7p406emQM+lFbmxw0ei5jWXNqn4YRre8qTLqPXNVy++/pOaZkkK8FM9WW24wi
+            +eYrOKAP3RvYiKTXkRpdfZ/Z9WQ0AAg+jjR++Bo6RgBu6Crjekjr7ZTl2H1RnA==
+            =96wl
+            -----END PGP MESSAGE-----
+        fp: FEAE1C9C842D48A03C02C8BF23D2AAAD58DECDA0
+    encrypted_regex: ^(data|stringData)$
+    version: 3.6.0
