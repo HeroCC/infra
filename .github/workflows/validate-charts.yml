@@ -13,6 +13,6 @@ jobs:
       - name: Validate Helm releases in deployments dir
         uses: stefanprodan/hrval-action@v4.0.0
         with:
-          helmRelease: deployments/
+          helmRelease: clusters/
           helmVersion: v3
 
