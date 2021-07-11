@@ -45,10 +45,10 @@ spec:
   waitTimeoutForHealthyOSDInMinutes: 10
   mon:
     # Set the number of mons to be started. Must be an odd number, and is generally recommended to be 3.
-    count: 3
+    count: 1
     # The mons should be on unique nodes. For production, at least 3 nodes are recommended for this reason.
     # Mons should only be allowed on the same node for test environments where data loss is acceptable.
-    allowMultiplePerNode: false
+    allowMultiplePerNode: true
   mgr:
     # When higher availability of the mgr is needed, increase the count to 2.
     # In that case, one mgr will be active and one in standby. When Ceph updates which
@@ -127,7 +127,7 @@ spec:
       dataSource: zero
       # iteration overwrite N times instead of the default (1)
       # takes an integer value
-      iteration: 1
+      iteration: 0
     # allowUninstallWithVolumes defines how the uninstall should be performed
     # If set to true, cephCluster deletion does not wait for the PVs to be deleted.
     allowUninstallWithVolumes: false
