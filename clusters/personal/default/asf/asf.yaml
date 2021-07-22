@@ -7,9 +7,6 @@ metadata:
   namespace: default
   labels:
     app: asf
-  annotations:
-    fluxcd.io/automated: "true"
-    fluxcd.io/tag.asf: glob:~5.0.*.*
 spec:
   replicas: 1
   selector:
@@ -22,7 +19,7 @@ spec:
     spec:
       containers:
       - name: asf
-        image: justarchi/archisteamfarm:5.1.0.9
+        image: justarchi/archisteamfarm:5.1.1.1
         ports:
           - containerPort: 1242
         envFrom:
