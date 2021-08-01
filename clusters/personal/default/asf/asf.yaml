@@ -37,4 +37,16 @@ spec:
                   name: asf-configmap
               - secret:
                   name: asf-account-creds
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: asf
+spec:
+  selector:
+    app: asf
+  ports:
+    - protocol: TCP
+      port: 1242
+      targetPort: 1242
 
