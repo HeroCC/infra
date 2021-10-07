@@ -39,7 +39,7 @@ spec:
           for d in ./*/; do (cd "$d" && pwd &&  npm install) ; done
       containers:
       - name: magicmirror
-        image: bastilimbach/docker-magicmirror:v2.14.0
+        image: bastilimbach/docker-magicmirror:v2.15.0
         ports:
         - name: web
           containerPort: 8080
