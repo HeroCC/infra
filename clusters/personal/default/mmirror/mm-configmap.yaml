@@ -75,15 +75,15 @@ data:
             ],
           }
         },
-        #{
-        #   module: "compliments",
-        #   position: "lower_third"
-        #},
+        //{
+        //   module: "compliments",
+        //   position: "lower_third"
+        //},
         {
           module: "weather",
           position: "top_right",
           config: {
-            location: "Amherst, MA",
+            location: "${WEATHER_LOCATION}",
             type: "current",
             apiKey: "${OPENWEATHER_API}"
           }
@@ -93,9 +93,7 @@ data:
           position: "top_right",
           header: "Weather Forecast",
           config: {
-            location: "Amherst, MA",
-            #location: "New York",
-            #locationID: "5128581",
+            location: "${WEATHER_LOCATION}",
             type: "daily",
             apiKey: "${OPENWEATHER_API}"
           }
