@@ -1,0 +1,67 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plex
+  namespace: media
+  labels:
+    app: plex
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: plex
+  template:
+    metadata:
+      labels:
+        app: plex
+    spec:
+      containers:
+      - name: plex
+        image: plexinc/pms-docker:1.24.5.5173-8dcc73a59
+        env:
+          - name: TZ
+            value: "America/New_York"
+        volumeMounts:
+          - name: rclone-mount
+            mountPropagation: HostToContainer
+            mountPath: /media
+            #readOnly: true
+          - name: plex-config
+            mountPath: /config
+          - name: plex-transcode
+            mountPath: /transcode
+        
+      - name: rclone-merge
+        image: rclone/rclone:1.57
+        command: ["rclone"]
+        args: ["mount", "media:", "/rclonemount/", "--allow-non-empty", "--allow-other"]
+        securityContext:
+          privileged: true
+          capabilities:
+            add:
+              - SYS_ADMIN
+        lifecycle:
+          preStop:
+            exec:
+              command: ["fusermount", "-u", "/rclonemount/"]
+        volumeMounts:
+          - name: rclone-mount
+            mountPropagation: Bidirectional
+            mountPath: /rclonemount/
+            #readOnly: true
+          - name: rclone-config-vol
+            mountPath: /root/.config/rclone/
+      volumes:
+        - name: rclone-mount
+          emptyDir: {}
+        - name: rclone-config-vol
+          secret:
+            secretName: rclone-media-conf-secret
+        - name: plex-config
+          persistentVolumeClaim:
+            claimName: plex-config
+        - name: plex-transcode
+          emptyDir:
+            medium: Memory
+
