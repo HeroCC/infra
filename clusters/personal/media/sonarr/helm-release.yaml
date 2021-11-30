@@ -25,6 +25,8 @@ spec:
       config:
         enabled: true
         existingClaim: sonarr-config
+      nzb-downloads:
+        enabled: true
       rclone-media:
         enabled: true
         mountPropagation: HostToContainer
@@ -59,4 +61,4 @@ spec:
         memory: 250Mi
         cpu: 500m
       limits:
-        memory: 1000Mi
+        memory: 512Mi
