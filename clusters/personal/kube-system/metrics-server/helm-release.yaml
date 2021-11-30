@@ -12,6 +12,6 @@ spec:
       version: 3.7.0
       sourceRef:
         kind: HelmRepository
-        name: metrics-server-charts
+        name: metric-server-charts
         namespace: flux-system
       interval: 5m
