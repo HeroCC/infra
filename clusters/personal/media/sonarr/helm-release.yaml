@@ -30,10 +30,9 @@ spec:
         mountPropagation: HostToContainer
         type: emptyDir
       rclone-config-vol:
-        enabled: false
+        enabled: true
         type: secret
         name: rclone-media-conf-secret
-        mountPath: /.rclone
     additionalContainers:
       rclone-mount:
         name: rclone-mount
@@ -49,7 +48,7 @@ spec:
             exec:
               command: ["fusermount", "-u", "/rclonemount/"]
         volumeMounts:
-          - name: rclone-mount
+          - name: rclone-media
             mountPropagation: Bidirectional
             mountPath: /rclonemount/
             #readOnly: true
