@@ -19,6 +19,7 @@ spec:
     image:
       repository: ghcr.io/k8s-at-home/sonarr
       tag: v3.0.6.1342
+    args: ["/exitimmediately"]
     env:
       TZ: "America/New_York"
     persistence:
