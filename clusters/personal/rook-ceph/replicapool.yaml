@@ -57,3 +57,5 @@ parameters:
 # Delete the rbd volume when a PVC is deleted
 reclaimPolicy: Delete
 
+# Allow resizing volumes. Works on ext4, k8s 1.14+
+allowVolumeExpansion: true
