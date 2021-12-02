@@ -34,6 +34,9 @@ spec:
         enabled: true
         type: secret
         name: rclone-media-conf-secret
+      nzb-downloads:
+        enabled: true
+        existingClaim: nzb-downloads
     additionalContainers:
       rclone-mount:
         name: rclone-mount
