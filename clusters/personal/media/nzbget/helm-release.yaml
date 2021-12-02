@@ -27,7 +27,7 @@ spec:
         existingClaim: nzbget-config
       downloads:
         enabled: true
-        existingClaim: nzb-downloads
+        existingClaim: media-library
     probes:
       liveness:
         enabled: true

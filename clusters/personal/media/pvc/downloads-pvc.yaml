@@ -2,12 +2,13 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: nzb-downloads
+  name: media-library
   namespace: media
 spec:
   accessModes:
-    - ReadWriteMany
+    # TODO make this ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
-      storage: 20Gi
+      storage: 50Gi
   storageClassName: rook-ceph-block
