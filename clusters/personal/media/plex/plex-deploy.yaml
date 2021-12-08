@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: plex
-        image: plexinc/pms-docker:1.24.5.5173-8dcc73a59
+        image: plexinc/pms-docker:1.25.1.5286-34f965be8
         env:
           - name: TZ
             value: "America/New_York"
@@ -31,6 +31,8 @@ spec:
             mountPath: /config
           - name: plex-transcode
             mountPath: /transcode
+          - name: local-media
+            mountPath: /downloads
         
       - name: rclone-merge
         image: rclone/rclone:1.57
@@ -64,4 +66,7 @@ spec:
         - name: plex-transcode
           emptyDir:
             medium: Memory
+        - name: local-media
+          persistentVolumeClaim:
+            claimName: media-library
 
