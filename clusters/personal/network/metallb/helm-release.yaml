@@ -21,4 +21,4 @@ spec:
           protocol: layer2
           avoid-buggy-ips: true
           addresses:
-            - "10.0.2.0/24"
+            - "10.0.8.0/24"
