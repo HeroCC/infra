@@ -21,4 +21,5 @@ spec:
           protocol: layer2
           avoid-buggy-ips: true
           addresses:
-            - "10.0.8.0/24"
+          # TODO use a unique, non DHCP range
+            - "10.0.1.200-10.0.1.254"
