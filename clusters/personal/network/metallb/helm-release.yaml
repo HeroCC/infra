@@ -13,6 +13,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: metallb-charts
+        namespace: flux-system
   values:
     configInline:
       address-pools:
