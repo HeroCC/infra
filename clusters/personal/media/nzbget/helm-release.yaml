@@ -28,6 +28,12 @@ spec:
       downloads:
         enabled: true
         existingClaim: media-library
+    ingress:
+      enabled: true
+      annotations:
+        traefik.ingress.kubernetes.io/router.middlewares: "network-internal-only@kubernetescrd"
+      hosts:
+        - host: nzbget.${SECRET_DOMAIN}
     probes:
       liveness:
         enabled: true
