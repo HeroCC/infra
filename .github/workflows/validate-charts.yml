@@ -11,8 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Validate Helm releases in deployments dir
-        uses: stefanprodan/hrval-action@v4.0.0
+        uses: atoscerebro/flux-validate-action@v1
         with:
-          helmRelease: clusters/
-          helmVersion: v3
+          flux-version: 0.24.0
 
