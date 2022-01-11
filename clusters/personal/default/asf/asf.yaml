@@ -42,6 +42,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: asf
+  namespace: default
 spec:
   selector:
     app: asf
