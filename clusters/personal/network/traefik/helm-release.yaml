@@ -78,7 +78,7 @@ spec:
         maxVersion: VersionTLS13
         sniStrict: true
     pilot:
-      enabled: false
+      enabled: true
     experimental:
       plugins:
         enabled: false
@@ -91,3 +91,8 @@ spec:
         cpu: 300m
       limits:
         memory: 200Mi
+  valuesFrom:
+    - kind: Secret
+      name: traefik-pilot
+      valuesKey: token
+      targetPath: pilot.token
