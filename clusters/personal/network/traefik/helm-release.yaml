@@ -61,7 +61,7 @@ spec:
     ports:
       traefik:
         port: 9000
-        expose: false
+        expose: true
       web:
         redirectTo: websecure
       websecure:
