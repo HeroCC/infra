@@ -17,7 +17,7 @@ spec:
     - kind: TraefikService
       name: api@internal
   tls:
-    secretName: traefik-dash-cert
+    secretName: traefik-dash-tls
 
 ---
 apiVersion: cert-manager.io/v1
