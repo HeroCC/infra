@@ -7,7 +7,7 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: "selfsigned"
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-    traefik.ingress.kubernetes.io/router.middlewares: "network-internal-only@kubernetescrd"
+    traefik.ingress.kubernetes.io/router.middlewares: "network-internal-ips@kubernetescrd"
 spec:
   ingressClassName: "traefik"
   tls:
