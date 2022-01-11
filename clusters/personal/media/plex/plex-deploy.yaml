@@ -70,3 +70,43 @@ spec:
           persistentVolumeClaim:
             claimName: media-library
 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: plex
+  namespace: media
+spec:
+  selector:
+    app: plex
+  ports:
+    - protocol: TCP
+      port: 32400
+      targetPort: 32400
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: plex
+  namespace: media
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
+    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+spec:
+  ingressClassName: "traefik"
+  tls:
+    - hosts:
+        - "plex.${SECRET_DOMAIN}"
+      secretName: "plex-tls"
+  rules:
+    - host: "plex.${SECRET_DOMAIN}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: plex
+                port:
+                  number: 32400
