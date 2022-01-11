@@ -14,6 +14,9 @@ spec:
         kind: HelmRepository
         name: traefik-charts
         namespace: flux-system
+  dependsOn:
+    - name: cert-manager
+      namespace: cert-manager
   # https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml
   values:
     service:
@@ -34,10 +37,13 @@ spec:
       isDefaultClass: true
     ingressRoute:
       dashboard:
+        # kubectl port-forward -n network $(kubectl get pods -n network --selector "app.kubernetes.io/name=traefik" --output=name) 9000:9000
+        # http://localhost:9000/dashboard/
         enabled: true
     providers:
       kubernetesCRD:
         enabled: true
+        ingressClass: traefik
         allowExternalNameServices: true
       kubernetesIngress:
         enabled: true
