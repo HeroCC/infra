@@ -16,6 +16,7 @@ spec:
         name: jetstack-charts
         namespace: flux-system
   values:
+    # TODO https://cert-manager.io/docs/usage/ingress/#optional-configuration
     installCRDs: true
     webhook:
       enabled: true
