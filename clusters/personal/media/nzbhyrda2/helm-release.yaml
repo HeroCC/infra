@@ -18,13 +18,26 @@ spec:
   values:
     image:
       repository: ghcr.io/k8s-at-home/nzbhydra2
-      tag: v4.0.1
+      tag: v4.0.2
     env:
       TZ: 'America/New York'
     persistence:
       config:
         enabled: true
         existingClaim: nzbhydra-config
+    probes:
+      liveness:
+        spec:
+          httpGet:
+            path: /nzbhydra2/actuator/health/livenessState
+      readiness:
+        spec:
+          httpGet:
+            path: /nzbhydra2/actuator/health/livenessState
+      startup:
+        spec:
+          httpGet:
+            path: /nzbhydra2/actuator/health/livenessState
     resources:
       requests:
         memory: 250Mi
