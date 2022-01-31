@@ -1,0 +1,41 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: media-ingress
+  namespace: media
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
+    # https://community.traefik.io/t/how-to-configure-middleware-with-kubernetes-ingress-middleware-xyz-does-not-exist/5016/3
+    traefik.ingress.kubernetes.io/router.middlewares: network-basic-auth@kubernetescrd
+spec:
+  ingressClassName: "traefik"
+  tls:
+    - hosts:
+        - "media.${SECRET_DOMAIN}"
+      secretName: "media-tls"
+  rules:
+    - host: "media.${SECRET_DOMAIN}"
+      http:
+        paths:
+          - path: /nzbget
+            pathType: Prefix
+            backend:
+              service:
+                name: nzbget
+                port:
+                  number: 6789
+          - path: /nzbhydra2
+            pathType: Prefix
+            backend:
+              service:
+                name: nzbhydra2
+                port:
+                  number: 5076
+          - path: /sonarr
+            pathType: Prefix
+            backend:
+              service:
+                name: sonarr
+                port:
+                  number: 8989
