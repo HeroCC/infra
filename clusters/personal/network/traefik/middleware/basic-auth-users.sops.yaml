@@ -5,15 +5,15 @@ metadata:
     namespace: network
 type: Opaque
 data:
-    users: ENC[AES256_GCM,data:0gA9u5mc0rF5+VxvEMOULz3WPUQbKtSgo4KDONrC3yWQUlkJlnSsy3PLl83sIVupOHXWPrIq9RKBQXAs,iv:3XcaIXDzhzZFrnYHLeXn3sKKHDtcjZw2YWGslTWes2M=,tag:pmbUeQv3xEK1X85p1J4r9w==,type:str]
+    users: ENC[AES256_GCM,data:Ky1uVX7C68IHNTWoP8vOPtmKYAVh2rPtJIhHYWNzh+GF0rdOtzx2x/2uscV5t1mHy1msa0OXTW8uYOAMqvrBTM2Y9i+wRHmbzpzoU1w3nYE6YUZvBcbnNg==,iv:X1cCTreGO6ftFVY4Qby4gZEajjIbiuCAVaTJ+xhG9rM=,tag:2eKR0+wmXvsoAoehXPiWYw==,type:str]
 sops:
     kms: []
     gcp_kms: []
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2022-01-31T03:40:39Z"
-    mac: ENC[AES256_GCM,data:6roEYxcDrWW0+1NQwjfGU1w5/ebKMYrvlbG+pTSf2nwxwlydRIlePzmXRL5zMR0TQpkc1FMyEUHvTFRqhPh3JenJv2seC8YNJJurqomInLQgIf59nc/tnxtBcSh0Nkx2e6NK2GLL2RF1gsEPUSq2ZmAPnFNdgix6IF+fPUEA/dw=,iv:bq7J3NkSNadTnWzgSFjZJ+ueGx0hvI/btM12sP5cp7w=,tag:SHQ4Br43NBd5P7dHIFgWaQ==,type:str]
+    lastmodified: "2022-01-31T04:22:45Z"
+    mac: ENC[AES256_GCM,data:FAUuqyKqXOF2RxtRRHQswFd5aVgac8R0SJfNF0QfedYRb0zj1rOxx7UAK3IWA6LHwWNxsGDLb+75cdk0jH/vBT4FRCpHEAMZFUVbzLiq3c3ZgE44+bVxInI8hIwDIRtM9VHDKaQnXEk/dZVP5lahxrX+n/Qw+NJjuAYBDGd3yDo=,iv:k44eOpIB25E/InJc9rZXRhymUXyNpCVHdMOlm0IIG6E=,tag:BuuSmSkX7QBrKTY7Q8Vj7w==,type:str]
     pgp:
         - created_at: "2020-09-01T21:52:58Z"
           enc: |
