@@ -28,7 +28,9 @@ spec:
         volumeMounts:
           - name: asf-config-vol
             mountPath: /app/config
-            readOnly: false
+            #readOnly: false
+      - name: asf-autoclaim
+        image: herocc/archisteamfarm:asfclaim
       volumes:
         - name: asf-config-vol
           projected:
