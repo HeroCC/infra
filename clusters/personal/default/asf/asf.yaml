@@ -31,6 +31,10 @@ spec:
             #readOnly: false
       - name: asf-autoclaim
         image: herocc/archisteamfarm:asfclaim
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/sh", "-c", "echo 'sleeping for warmup' && sleep 30s"]
       volumes:
         - name: asf-config-vol
           projected:
