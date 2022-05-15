@@ -51,7 +51,7 @@ spec:
         lifecycle:
           preStop:
             exec:
-              command: ["fusermount", "-u", "/rclonemount/"]
+              command: ["fusermount", "-uz", "/rclonemount/"]
         volumeMounts:
           - name: rclone-media
             mountPropagation: Bidirectional
