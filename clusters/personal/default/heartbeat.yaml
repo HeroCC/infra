@@ -19,5 +19,5 @@ spec:
             - /bin/sh
             - -c
             - wget 'https://hc-ping.com/a91078ee-67bb-44ee-8577-a6b5ae581172' -T 10 -t 5
-          restartPolicy: OnFailure
+          restartPolicy: Never
 
