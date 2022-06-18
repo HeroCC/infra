@@ -39,3 +39,10 @@ spec:
                 name: sonarr
                 port:
                   number: 8989
+          - path: /tautulli
+            pathType: Prefix
+            backend:
+              service:
+                name: tautulli
+                port:
+                  number: 8181
