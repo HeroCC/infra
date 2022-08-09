@@ -59,6 +59,8 @@ spec:
             #readOnly: true
           - name: rclone-config-vol
             mountPath: /root/.config/rclone/
+          - name: local-media
+            mountPath: /downloads/
     resources:
       requests:
         memory: 250Mi
