@@ -46,3 +46,10 @@ spec:
                 name: tautulli
                 port:
                   number: 8181
+          - path: /radarr
+            pathType: Prefix
+            backend:
+              service:
+                name: radarr
+                port:
+                  number: 7878
