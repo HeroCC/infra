@@ -17,11 +17,9 @@ spec:
       interval: 5m
   values:
     image:
-      repository: ghcr.io/k8s-at-home/radarr
       tag: v4.1.0.6175
     env:
       TZ: "America/New_York"
-      EXTRA_ARGS: ["--exitimmediately"]
     persistence:
       config:
         enabled: true
