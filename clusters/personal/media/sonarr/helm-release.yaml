@@ -41,7 +41,7 @@ spec:
     additionalContainers:
       rclone-mount:
         name: rclone-mount
-        image: rclone/rclone:1.57
+        image: rclone/rclone:1.59
         args: ["mount", "media:", "/rclonemount/", "--allow-non-empty", "--allow-other"]
         securityContext:
           privileged: true

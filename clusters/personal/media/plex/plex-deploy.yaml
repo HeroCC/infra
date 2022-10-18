@@ -35,7 +35,7 @@ spec:
             mountPath: /downloads
         
       - name: rclone-merge
-        image: rclone/rclone:1.57
+        image: rclone/rclone:1.59
         command: ["rclone"]
         args: ["mount", "media:", "/rclonemount/", "--allow-non-empty", "--allow-other"]
         securityContext:
