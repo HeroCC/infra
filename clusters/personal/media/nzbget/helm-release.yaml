@@ -30,7 +30,9 @@ spec:
         existingClaim: media-library
     probes:
       liveness:
-        enabled: true
+        enabled: false
+      readiness:
+        enabled: false
         # custom: true
         # spec:
         #   exec:
