@@ -8,6 +8,7 @@ spec:
   startingDeadlineSeconds: 600
   successfulJobsHistoryLimit: 0
   failedJobsHistoryLimit: 1
+  concurrencyPolicy: Replace
   jobTemplate:
     spec:
       template:
