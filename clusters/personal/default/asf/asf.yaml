@@ -33,7 +33,7 @@ spec:
             mountPath: /app/config
             readOnly: false
       - name: asf-autoclaim
-        image: herocc/archisteamfarm:asfclaim&&&&&&&
+        image: herocc/archisteamfarm:asfclaim
         command: ["/bin/sh", "-c", "echo 'waiting for warmup' && sleep 1m && node index.js"]
       volumes:
         - name: asf-config-vol
