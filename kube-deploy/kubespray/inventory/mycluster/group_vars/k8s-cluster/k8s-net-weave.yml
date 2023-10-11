@@ -51,7 +51,10 @@ weave_password: "9sdnbFQ^f4KZU^3^xg"
 # Set to 1 to preserve the client source IP address when accessing Service
 # annotated with `service.spec.externalTrafficPolicy=Local`. The feature works
 # only with Weave IPAM (default).
-# weave_no_masq_local: true
+weave_no_masq_local: true
+
+# set to nft to use nftables backend for iptables (default is iptables)
+# weave_iptables_backend: iptables
 
 # Extra variables that passing to launch.sh, useful for enabling seed mode, see
 # https://www.weave.works/docs/net/latest/tasks/ipam/ipam/
