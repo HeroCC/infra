@@ -5,6 +5,10 @@ metadata:
   name: datadog
   namespace: default
 spec:
+  features:
+    logCollection:
+        enabled: true
+        containerCollectAll: true
   global:
     site: datadoghq.com
     credentials:
