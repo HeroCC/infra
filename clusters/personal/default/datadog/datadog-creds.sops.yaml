@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: datadog-secret
+    namespace: default
+type: Opaque
+data:
+    api-key: ENC[AES256_GCM,data:GS8SDyPSx8o+DRlz6m3vAd+mBFYIJbGVJNSIvKy5YuDvv7GcIIxAIR/qa3Q=,iv:791EF8pnGn11wW7zsR+QKQTl7PgN3F41aKlP6CF8DUg=,tag:Zma76x55RRMei9VcfjtvhA==,type:str]
+    app-key: ENC[AES256_GCM,data:mbjxEJ9flkbgI411BZFWuYbKdc9UE6h7mX6EGXxHsPVGIxp3r0PAjEmjmOpo1QTNytFJhEKnSxY=,iv:CgQjiTsl1k+IoX2gE3W7+JiUf85xdYoqgrgCsg+EPv4=,tag:O2fxny6DKGpRy4BYQFcC3g==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2023-10-11T03:14:59Z"
+    mac: ENC[AES256_GCM,data:3OtigJk9I2VZZGTtK5VbgwEbMZVKZ6F5zz2dHmsq27Nb3ZzVqhTEc+gfEYZ0G9MF2DWyO7ipmt5sEw82bsKbfraUP5/7a1mBeH+tZdXjbq+8O6UY1HBYxY0P7PYK5vzg2DJZSZqxq3TJG2kRsoYBpMf4ZVDePOekDOyoERJkztc=,iv:aOdTgFwApJe6MYAjVJAkxiZCtJm/YFAnyToIFQSDJVg=,tag:simNBa8UsEyRZdAsEKK9zQ==,type:str]
+    pgp:
+        - created_at: "2020-09-05T19:58:33Z"
+          enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA7R8OyOD8bjEAQ//TKxP+fyNeRg8wAGBMUZ18bJ8hAGDKuZZ/kzKl3GYz6EF
+            uJfLSdFw5MFAsFOZLvBgBXQyN+/AsgeA1Uczk5w285PpapNm6YqufVbfSgSTcqyO
+            2FSwWFpeSxRYgeL2voFnpRVZeu6jlROeIC1E4DtTAG45BSQhuBQJCWT9TOlu1MwI
+            lHPmKlh8P0EqkxLlfjB4ttW+13RzYhIICJ1CUR8WPTJoffLZY1osQXH97QauxE0j
+            IN9xK2k4v7Rg+rIDKdRwiBVqJPwF2KoeRt0W3SmF4W5I2hXaUizi5QG/5iLJMuJU
+            ogQMhJFjkyM8vEGkdhHDAqdH3vQa2hG9B6L4XuyDh+X62ELZ5j6DEo0j2+3C0zTJ
+            UtjB5Oy+oTVQvzAG4g0MNRQzh0SoUhMtbGF4FdKfyPqeswtnK+eK8onpIcfZoU9k
+            fTKO/3GXz5wJh6lo8ZjbjVLV0h9kae1R6nVxy7PIBwGx6BXBIx6ZLeR9ukDC3GzM
+            22GZNUWSO91bDB+oKSDEsAn3rp0ooabxarPDvsrEYT3hTM6H0CqygLv5TgqbbjyV
+            1hz9LiuQsMI5M050rTqzagVXlTSpNcBXwX9FkUvjgIuRys2hHrX+2nNxM2EMHa8a
+            5qxqD+mSURpm18oISrRoMO8pcwanqLWT3NAROp/y4l0qgSI3+aipkkc7VGSXiezS
+            XgFPFSAq07ChTcZa9PVQ8e9C6ZXHMMhfK1jaZ5VlpIJzdfIeF2jEM8G6R11rYtZj
+            vU2Qak/WY6fBSeBkjjIues8FE0zJLVrnka+4BEAfGEx8GndGMMNJncNhEnhbKgk=
+            =+orp
+            -----END PGP MESSAGE-----
+          fp: C8A1E2D47C35AB1C30288640940ED79CFA122C1A
+        - created_at: "2020-09-05T19:58:33Z"
+          enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hIwD5/DIMlnnmvcBA/9AcUJUd6eqlskCwtqVbbVcc/xxQx2mrlRRQPyYqkOW5yvP
+            6W/5rpFtBLiZntqbPRrxeTh4LxqhZzPuJOmAbWiOWhNOKVrQHC6E1vBn9JtUTW9C
+            D9oiBZJxus38gHO+k3dKXd8IFfDtfNtuP60qD7H01YcVYKw/bGOQuw/8+dtgONJe
+            AeOdTgHrnH3fFHgUjUlvbVifczBL8sqFzTN51PkAylYJcbDC+ucdm8U6tNmiYE+9
+            3Rmpk7aPE+qPqU09jk55YGreRhg/Bk/8xmwzSki/AFOb5q7yTzv3Lmf2EVplfw==
+            =D8kW
+            -----END PGP MESSAGE-----
+          fp: FEAE1C9C842D48A03C02C8BF23D2AAAD58DECDA0
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.3
