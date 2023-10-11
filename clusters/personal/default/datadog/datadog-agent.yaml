@@ -7,8 +7,12 @@ metadata:
 spec:
   features:
     logCollection:
-        enabled: true
-        containerCollectAll: true
+      enabled: true
+      containerCollectAll: true
+    liveContainerCollection:
+      enabled: true
+    orchestratorExplorer:
+      enabled: true
   global:
     site: datadoghq.com
     credentials:
