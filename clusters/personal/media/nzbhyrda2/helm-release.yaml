@@ -38,6 +38,16 @@ spec:
         spec:
           httpGet:
             path: /nzbhydra2/actuator/health/livenessState
+    initContainers:
+      - name: clearLogs
+        image: busybox
+        command:
+          - rm
+          - -rv
+          - /config/logs/
+        volumeMounts:
+          - mountPath: /config
+            name: config
     resources:
       requests:
         memory: 250Mi
