@@ -17,8 +17,8 @@ spec:
       interval: 5m
   values:
     image:
-      repository: ghcr.io/k8s-at-home/nzbhydra2
-      tag: v4.7.1
+      repository: lscr.io/linuxserver/nzbhydra2
+      tag: 5.1.11
     env:
       TZ: 'America/New York'
     persistence:
@@ -29,21 +29,21 @@ spec:
       liveness:
         spec:
           httpGet:
-            path: /nzbhydra2/actuator/health/livenessState
+            path: /nzbhydra2/actuator/health/ping
       readiness:
         spec:
           httpGet:
-            path: /nzbhydra2/actuator/health/livenessState
+            path: /nzbhydra2/actuator/health/ping
       startup:
         spec:
           httpGet:
-            path: /nzbhydra2/actuator/health/livenessState
+            path: /nzbhydra2/actuator/health/ping
     initContainers:
       - name: clearLogs
         image: busybox
         command:
           - rm
-          - -rv
+          - -rfv
           - /config/logs/
         volumeMounts:
           - mountPath: /config
