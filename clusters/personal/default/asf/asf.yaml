@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: asf
-        image: justarchi/archisteamfarm:5.4.10.3
+        image: justarchi/archisteamfarm:5.4.13.4
         env:
           - name: "ASF_ARGS"
             value: "--no-config-migrate"
