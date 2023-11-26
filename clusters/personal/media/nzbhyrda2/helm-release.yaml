@@ -39,7 +39,7 @@ spec:
           httpGet:
             path: /nzbhydra2/actuator/health/ping
     initContainers:
-      - name: clearLogs
+      clearlogs:
         image: busybox
         command:
           - rm
