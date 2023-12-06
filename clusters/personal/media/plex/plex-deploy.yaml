@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: plex
-        image: plexinc/pms-docker:1.29.1.6313-f4cdfea9c
+        image: plexinc/pms-docker:1.32.8.7639-fb6452ebf
         env:
           - name: TZ
             value: "America/New_York"
