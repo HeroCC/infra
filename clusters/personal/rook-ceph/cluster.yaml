@@ -178,17 +178,29 @@ spec:
 # These labels can be passed as LabelSelector to Prometheus
 #    monitoring:
   resources:
-# The requests and limits set here, allow the mgr pod to use half of one CPU core and 1 gigabyte of memory
-#    mgr:
-#      limits:
-#        cpu: "500m"
-#        memory: "1024Mi"
-#      requests:
-#        cpu: "500m"
-#        memory: "1024Mi"
-# The above example requests/limits can also be added to the other components
-#    mon:
-#    osd:
+    # The requests and limits set here, allow the mgr pod to use half of one CPU core and 1 gigabyte of memory
+    mgr:
+      limits:
+        cpu: "500m"
+        memory: "1024Mi"
+      requests:
+        cpu: "500m"
+        memory: "1024Mi"
+    # The above example requests/limits can also be added to the other components
+    mon:
+      limits:
+        cpu: "500m"
+        memory: "1024Mi"
+      requests:
+        cpu: "500m"
+        memory: "1024Mi"
+    osd:
+      limits:
+        cpu: "1000m"
+        memory: "2048Mi"
+      requests:
+        cpu: "500m"
+        memory: "1024Mi"
 # For OSD it also is a possible to specify requests/limits based on device class
 #    osd-hdd:
 #    osd-ssd:
