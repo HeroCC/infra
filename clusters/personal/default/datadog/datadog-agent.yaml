@@ -13,6 +13,9 @@ spec:
       enabled: true
     orchestratorExplorer:
       enabled: true
+    processAgent:
+      enabled: true
+      processCollection: true
   global:
     site: datadoghq.com
     credentials:
