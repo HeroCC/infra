@@ -1,0 +1,32 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: rclone-move-media
+  namespace: media
+spec:
+  schedule: "10 3 * * *"
+  startingDeadlineSeconds: 600
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: rclone-move
+              image: rclone/rclone:1.61
+              command: ["rclone"]
+              args: ["move", "-vv", "$LOCAL_MEDIA", "remote-media:"]
+              env:
+                - name: RCLONE_DRIVE_STOP_ON_UPLOAD_LIMIT
+                  value: "true"
+              volumeMounts:
+                - name: rclone-config-vol
+                  mountPath: /config
+          volumes:
+            - name: rclone-config-vol
+              secret:
+                secretName: rclone-media-conf-secret
+
