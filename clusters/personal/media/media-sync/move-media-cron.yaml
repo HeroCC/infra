@@ -18,7 +18,7 @@ spec:
             - name: rclone-move
               image: rclone/rclone:1.61
               command: ["rclone"]
-              args: ["move", "-vv", "$LOCAL_MEDIA", "remote-media:"]
+              args: ["move", "-vv", "local-media:", "remote-media:"]
               env:
                 - name: RCLONE_DRIVE_STOP_ON_UPLOAD_LIMIT
                   value: "true"
