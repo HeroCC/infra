@@ -1,0 +1,63 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app externaldns-cloudflare
+  namespace: network
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: external-dns
+      version: 1.13.1
+      sourceRef:
+        kind: HelmRepository
+        name: kubernetes-sigs-external-dns
+        namespace: flux-system
+      interval: 30m
+
+  values:
+    fullnameOverride: *app
+    domainFilters:
+      - "${SECRET_DOMAIN}"
+
+    env:
+      - name: CF_API_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: externaldns-secrets
+            key: cloudflare_api_token
+
+    extraArgs:
+      # Enable the ExternalDNS CRD
+      - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
+      - --crd-source-kind=DNSEndpoint
+      # Use Cloudflare's DDOS protection
+      - --cloudflare-proxied
+      # Ignore the default ingress endpoints -- we only want annotated
+      - --ignore-ingress-rules-spec
+      - --ignore-ingress-tls-spec
+
+    podAnnotations:
+      secret.reloader.stakater.com/reload: externaldns-secrets
+
+    policy: sync
+    provider: cloudflare
+
+    resources:
+      requests:
+        cpu: 13m
+        memory: 42M
+      limits:
+        memory: 42M
+
+    serviceMonitor:
+      enabled: false
+
+    sources:
+      - ingress
+      - crd
+
+    txtPrefix: "k8s-"
+    txtOwnerId: "b28a3137" # random constant
