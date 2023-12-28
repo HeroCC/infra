@@ -77,6 +77,8 @@ metadata:
   name: plex
   namespace: media
 spec:
+  externalTrafficPolicy: Local
+  type: LoadBalancer
   selector:
     app: plex
   ports:
