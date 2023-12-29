@@ -21,10 +21,9 @@ spec:
   values:
     nameOverride: *app
     resources:
-      limits: &resources
+      limits:
         memory: 256Mi
       requests:
-        <<: *resources
         cpu: 10m
     cloudflare:
       tunnelName: "home-k8s"
