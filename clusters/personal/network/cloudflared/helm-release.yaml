@@ -31,6 +31,9 @@ spec:
       secretName: cloudflare-tunnel-secrets
       enableWarp: true
       ingress:
+        # Example of a request mapping to the Hello World test server:
+        - hostname: external.${SECRET_DOMAIN}
+          service: hello_world
         - hostname: "*.${SECRET_DOMAIN}"
           service: https://traefik.network.svc.cluster.local.:443
           originRequest:
