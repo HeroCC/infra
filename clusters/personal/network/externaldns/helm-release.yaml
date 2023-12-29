@@ -35,9 +35,6 @@ spec:
       - --crd-source-kind=DNSEndpoint
       # Use Cloudflare's DDOS protection
       - --cloudflare-proxied
-      # Ignore the default ingress endpoints -- we only want annotated
-      - --ignore-ingress-rules-spec
-      - --ignore-ingress-tls-spec
 
     podAnnotations:
       secret.reloader.stakater.com/reload: externaldns-secrets
