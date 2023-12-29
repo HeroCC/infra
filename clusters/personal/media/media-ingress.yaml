@@ -6,6 +6,8 @@ metadata:
   namespace: media
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-production"
+    external-dns.alpha.kubernetes.io/hostname: "media.${SECRET_DOMAIN}"
+    external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
     # https://community.traefik.io/t/how-to-configure-middleware-with-kubernetes-ingress-middleware-xyz-does-not-exist/5016/3
     traefik.ingress.kubernetes.io/router.middlewares: network-basic-auth@kubernetescrd
 spec:
