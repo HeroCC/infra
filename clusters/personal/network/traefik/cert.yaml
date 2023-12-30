@@ -1,0 +1,25 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: traefik-tls-cert
+  namespace: network
+spec:
+  commonName: traefik.network.svc.cluster.local
+  secretName: traefik-default-tls
+  dnsNames:
+    - traefik.network.svc.cluster.local
+    - traefik
+    - "external.${SECRET_DOMAIN}"
+  issuerRef:
+    name: selfsigned
+    kind: ClusterIssuer
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: TLSStore
+metadata:
+  name: default
+  namespace: network
+spec:
+  defaultCertificate:
+    secretName: traefik-default-tls

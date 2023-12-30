@@ -106,7 +106,9 @@ spec:
       default:
         minVersion: VersionTLS12
         maxVersion: VersionTLS13
-        sniStrict: true
+        # sniStrict must be false if we wish to use the defaultCertificate as fallback
+        # https://doc.traefik.io/traefik/https/tls/#strict-sni-checking
+        sniStrict: false
     experimental:
       plugins:
         enabled: false
