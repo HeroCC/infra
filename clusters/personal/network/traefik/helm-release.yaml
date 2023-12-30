@@ -84,6 +84,7 @@ spec:
       plugins:
         enabled: false
     metrics:
+      datadog: {}
       prometheus:
         entryPoint: metrics
     resources:
