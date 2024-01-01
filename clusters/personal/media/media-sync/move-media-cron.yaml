@@ -25,8 +25,13 @@ spec:
               volumeMounts:
                 - name: rclone-config-vol
                   mountPath: /config
+                - name: local-media
+                  mountPath: /downloads
           volumes:
             - name: rclone-config-vol
               secret:
                 secretName: rclone-media-conf-secret
+            - name: local-media
+              persistentVolumeClaim:
+                claimName: media-library
 
