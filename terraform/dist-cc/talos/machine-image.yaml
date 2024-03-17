@@ -1,0 +1,12 @@
+customization:
+  #extraKernelArgs:
+  #  - net.ifnames=0
+  systemExtensions:
+    officialExtensions:
+      - siderolabs/amd-ucode
+      - siderolabs/binfmt-misc
+      - siderolabs/fuse3
+      - siderolabs/gvisor
+      - siderolabs/intel-ucode
+      - siderolabs/qemu-guest-agent
+      - siderolabs/tailscale
