@@ -8,6 +8,10 @@ terraform {
       source  = "terraform-provider-openstack/openstack"
       version = "~> 1.53.0"
     }
+    talos = {
+      source = "siderolabs/talos"
+      version = "~> 0.4.0"
+    }
     template = {
       source  = "hashicorp/template"
       version = "~> 2.2.0"
