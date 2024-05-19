@@ -14,7 +14,7 @@ data "template_file" "kairos_worker" {
 
   vars = {
     ssh_keys = yamlencode(toset([for keys in flatten([for user in data.gitlab_user_sshkeys.user_ssh_keys : user.keys]) : keys.key]))
-    edgevpn_token = var.edgevpn_token
+    edgevpn_token = yamlencode(var.edgevpn_token)
   }
 }
 
@@ -29,7 +29,7 @@ data "cloudinit_config" "kairos_master" {
 
   part {
     content_type = "text/cloud-config"
-    content = data.cloudinit_config.kairos_worker.rendered
+    content = data.template_file.kairos_worker.rendered
   }
 }
 
