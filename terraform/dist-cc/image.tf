@@ -28,3 +28,10 @@ resource "openstack_images_image_v2" "talos" {
   visibility       = "private"
 }
 
+resource "openstack_images_image_v2" "kairos_ubuntu_24" {
+  name            = "kairos-ubuntu-24"
+  image_source_url = "https://github.com/kairos-io/kairos/releases/download/v3.0.9/kairos-ubuntu-24.04-standard-amd64-generic-v3.0.9-k3sv1.29.3+k3s1.iso"
+  image_cache_path = "${path.module}/.terraform/image_cache"
+  container_format = "bare"
+  disk_format      = "iso"
+}
