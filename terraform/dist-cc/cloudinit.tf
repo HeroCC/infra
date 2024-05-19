@@ -9,6 +9,14 @@ data "template_file" "kairos_master" {
   vars = {}
 }
 
+data "template_file" "kairos_worker" {
+  template = "${file("${path.module}/cloud-init/kairos.yaml")}"
+
+  vars = {
+    ssh_keys = yamlencode(toset([for keys in flatten([for user in data.gitlab_user_sshkeys.user_ssh_keys : user.keys]) : keys.key]))
+  }
+}
+
 data "cloudinit_config" "kairos_master" {
   gzip          = false
   base64_encode = false
@@ -21,14 +29,6 @@ data "cloudinit_config" "kairos_master" {
   part {
     content_type = "text/cloud-config"
     content = data.cloudinit_config.kairos_worker.rendered
-  }
-}
-
-data "template_file" "kairos_worker" {
-  template = "${file("${path.module}/cloud-init/kairos.yaml")}"
-
-  vars = {
-    ssh_keys = yamlencode(toset([for keys in flatten([for user in data.gitlab_user_sshkeys.user_ssh_keys : user.keys]) : keys.key]))
   }
 }
 
