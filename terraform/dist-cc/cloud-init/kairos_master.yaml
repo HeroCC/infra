@@ -1,0 +1,4 @@
+#cloud-config
+
+p2p:
+  role: "master"

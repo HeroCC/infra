@@ -1,5 +1,9 @@
 terraform {
   required_providers {
+    cloudinit = {
+      source = "hashicorp/cloudinit"
+      version = "~> 2.3.4"
+    }
     gitlab = {
       source  = "gitlabhq/gitlab"
       version = "~> 16.8.1"

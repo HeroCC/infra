@@ -1,0 +1,22 @@
+#cloud-config
+
+hostname: metal-{{ trunc 4 .MachineID }}
+
+users:
+- name: cc
+  ssh_authorized_keys:
+    - gitlab:HeroCC
+
+k3s:
+  enabled: true
+  args:
+    - --disable=traefik,servicelb
+
+p2p:
+  # If DHT is disabled, EdgeVPN will only communicate over LAN
+  disable_dht: false
+
+  # network_token is the shared secret used by the nodes to co-ordinate with p2p.
+  # Setting a network token implies auto.enable = true.
+  # To disable, just set auto.enable = false
+  network_token: ""
