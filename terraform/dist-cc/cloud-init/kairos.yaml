@@ -4,8 +4,7 @@ hostname: metal-{{ trunc 4 .MachineID }}
 
 users:
 - name: cc
-  ssh_authorized_keys:
-    - gitlab:HeroCC
+  ssh_authorized_keys: ${ ssh_keys }
 
 k3s:
   enabled: true
