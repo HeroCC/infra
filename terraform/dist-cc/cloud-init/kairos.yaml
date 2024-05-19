@@ -18,4 +18,4 @@ p2p:
   # network_token is the shared secret used by the nodes to co-ordinate with p2p.
   # Setting a network token implies auto.enable = true.
   # To disable, just set auto.enable = false
-  network_token: ""
+  network_token: ${ edgevpn_token }

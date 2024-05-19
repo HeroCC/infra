@@ -4,6 +4,10 @@ variable "zerotier_central_token" {
   type      = string
 }
 
+variable "edgevpn_token" {
+  sensitive = true
+  type      = string
+}
 
 variable "gitlab_token" {
   sensitive = true

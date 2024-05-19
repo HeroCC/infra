@@ -14,6 +14,7 @@ data "template_file" "kairos_worker" {
 
   vars = {
     ssh_keys = yamlencode(toset([for keys in flatten([for user in data.gitlab_user_sshkeys.user_ssh_keys : user.keys]) : keys.key]))
+    edgevpn_token = var.edgevpn_token
   }
 }
 
