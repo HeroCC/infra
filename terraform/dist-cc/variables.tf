@@ -1,8 +1,16 @@
+# Sensitive
 variable "zerotier_central_token" {
   sensitive = true
   type      = string
 }
 
+
+variable "gitlab_token" {
+  sensitive = true
+  type      = string
+}
+
+# SSH Keys
 variable "gitlab_ssh_user_ids" {
   type = set(string)
   default = [ "90579" ]

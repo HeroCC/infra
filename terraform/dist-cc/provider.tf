@@ -31,6 +31,10 @@ provider "zerotier" {
   zerotier_central_token = var.zerotier_central_token
 }
 
+provider "gitlab" {
+  token = var.gitlab_token
+}
+
 provider "openstack" {
   user_name   = var.openstack_username
   tenant_id   = var.openstack_project_id
