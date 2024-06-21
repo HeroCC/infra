@@ -16,6 +16,11 @@ spec:
     processAgent:
       enabled: true
       processCollection: true
+    admissionController:
+      # Enable the admissionController to automatically inject APM and DogStatsD config and standard tags (env, service, version) into your pods
+      enabled: true             # default: true
+      # Enable injecting config without having the pod label: admission.datadoghq.com/enabled="true"
+      mutateUnlabelled: true    # default false
   global:
     site: datadoghq.com
     credentials:
