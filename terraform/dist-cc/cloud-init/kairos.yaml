@@ -7,14 +7,14 @@ install:
   auto: true # Automated install
   device: "auto" # largest
 
-bundles:
-  - targets:
-    - run://quay.io/kairos/community-bundles:kairos_latest
-    # - run://quay.io/kairos/packages:k9s-utils-0.26.7
+# bundles:
+#   - targets:
+#     - run://quay.io/kairos/community-bundles:kairos_latest
+#     # - run://quay.io/kairos/packages:k9s-utils-0.26.7
 
 users:
 - name: kairos
-  password: kairos
+  passwd: kairos
   ssh_authorized_keys:
     - github:HeroCC
     - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDoitx/WZRywOLPejrHn5COzkuV1pd9ix4hMlRVuYQ3oCo1ejJzFPkb3aECCpM3HQbU/DJXWfEdT/mr/IQO0V6uahYWMkJo9L2Kj2OstYFcC+1wPWa+2mOmv26qTUMq1PywNDWv4uRhzubFj8Bfqzn2KEtagJtpqdI47ybrWpovdKeLznPm7SV/hz9v0YlkLLqti6H2TtMjzMLzcGjSHXXd/yaaWKXbXuIQAgN3SxdHxOOQwTRRlHn/cnzmOBLZrJdPk+Ithm4spBjd8Lw8QbHu2XG1kd8ooZfcECwffkdv0LcOffBiJfu5ifg0Sj+XCwhGqsEPIuNXiRzf+rMW0ztLGp6VojwmqdbMniL+sLDIvrvuVFqUD1Yh1MmZu2S4gY72mEnizD66J5byKzJTalh1Ah0g8AL1s1AGe9TrYTMtG35llLeKTqPlYIpq1qFtkpwIWTxIE8bc402UQWRDekJdkRxbozZJoMdx5MtggxjQDIWRjM9sr3i/VSXjRzHVhBs= skellige"
