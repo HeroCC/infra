@@ -13,7 +13,10 @@ install:
 #     # - run://quay.io/kairos/packages:k9s-utils-0.26.7
 
 users:
-- name: kairos
+- name: cc
+  shell: /bin/bash
+  groups: 
+    - admin
   passwd: kairos
   ssh_authorized_keys:
     - github:HeroCC
