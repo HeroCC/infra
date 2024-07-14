@@ -9,6 +9,11 @@ variable "edgevpn_token" {
   type      = string
 }
 
+variable "sops_gpg_key" {
+  sensitive = true
+  type      = string
+}
+
 variable "gitlab_token" {
   sensitive = true
   type      = string

@@ -7,10 +7,11 @@ install:
   auto: true # Automated install
   device: "auto" # largest
 
-# bundles:
-#   - targets:
-#     - run://quay.io/kairos/community-bundles:kairos_latest
-#     # - run://quay.io/kairos/packages:k9s-utils-0.26.7
+bundles:
+  - targets: 
+    - run://quay.io/kairos/community-bundles:flux_latest
+#   - run://quay.io/kairos/community-bundles:kairos_latest
+#   - run://quay.io/kairos/packages:k9s-utils-0.26.7
 
 users:
 - name: cc
@@ -20,6 +21,38 @@ users:
   passwd: kairos
   ssh_authorized_keys:
     - github:HeroCC
+
+stages:
+  after-install-chroot:
+    - name: "Bootstrap Flux System Namespace"
+      files:
+        - path: /var/lib/rancher/k3s/server/manifests/flux-system-namespace.yaml
+          content: |
+            # -- This is needed now so we can add the SOPS secret
+            apiVersion: v1
+            kind: Namespace
+            metadata:
+              name: flux-system
+    
+    - name: "Add SOPS secret"
+      files:
+        - path: /var/lib/rancher/k3s/server/manifests/sops-secret.yaml
+          content: |
+            apiVersion: v1
+            kind: Secret
+            metadata:
+              name: sops-gpg
+              namespace: flux-system
+            type: Opaque
+            data:
+              sops.asc: "${ sops_gpg }"
+  
+  boot:
+    - name: "Set up various kube environment variables"
+      environment:
+        KUBECONFIG: /etc/rancher/k3s/k3s.yaml
+        CONTAINERD_ADDRESS: /run/k3s/containerd/containerd.sock
+        CONTAINERD_NAMESPACE: k8s.io
 
 k3s:
   enabled: true
@@ -35,3 +68,11 @@ p2p:
   # Setting a network token implies auto.enable = true.
   # To disable, just set auto.enable = false
   network_token: ${ edgevpn_token }
+
+flux:
+  github:
+    owner: HeroCC
+    repository: infra
+    path: clusters/personal
+    #components-extra: image-reflector-controller,image-automation-controller
+    #network-policy: "false"

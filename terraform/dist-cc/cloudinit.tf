@@ -11,6 +11,7 @@ data "template_file" "kairos_master" {
     p2p_role = "master"
     ssh_keys = yamlencode(toset([for keys in flatten([for user in data.gitlab_user_sshkeys.user_ssh_keys : user.keys]) : replace(keys.key, "\n", " ")]))
     edgevpn_token = yamlencode(var.edgevpn_token)
+    sops_gpg = var.sops_gpg_key
   }
 }
 
@@ -22,6 +23,7 @@ data "template_file" "kairos_worker" {
     p2p_role = "worker"
     ssh_keys = yamlencode(toset([for keys in flatten([for user in data.gitlab_user_sshkeys.user_ssh_keys : user.keys]) : replace(keys.key, "\n", " ")]))
     edgevpn_token = yamlencode(var.edgevpn_token)
+    sops_gpg = var.sops_gpg_key
   }
 }
 
@@ -32,11 +34,6 @@ data "template_cloudinit_config" "kairos_master" {
   part {
     content_type = "text/cloud-config"
     content = data.template_file.kairos_master.rendered
-  }
-
-  part {
-    content_type = "text/cloud-config"
-    content = data.template_file.kairos_worker.rendered
   }
 }
 
