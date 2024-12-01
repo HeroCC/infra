@@ -1,15 +1,9 @@
-data "gitlab_user_sshkeys" "user_ssh_keys" {
-  for_each = toset(var.gitlab_ssh_user_ids)
-  user_id  = each.value
-}
-
 data "template_file" "kairos_master" {
   template = "${file("${path.module}/cloud-init/kairos.yaml")}"
 
   vars = {
     hostname = "metal-distcc-master"
     p2p_role = "master"
-    ssh_keys = yamlencode(toset([for keys in flatten([for user in data.gitlab_user_sshkeys.user_ssh_keys : user.keys]) : replace(keys.key, "\n", " ")]))
     edgevpn_token = yamlencode(var.edgevpn_token)
     sops_gpg = var.sops_gpg_key
   }
@@ -21,7 +15,6 @@ data "template_file" "kairos_worker" {
   vars = {
     hostname = "metal-distcc-worker"
     p2p_role = "worker"
-    ssh_keys = yamlencode(toset([for keys in flatten([for user in data.gitlab_user_sshkeys.user_ssh_keys : user.keys]) : replace(keys.key, "\n", " ")]))
     edgevpn_token = yamlencode(var.edgevpn_token)
     sops_gpg = var.sops_gpg_key
   }
