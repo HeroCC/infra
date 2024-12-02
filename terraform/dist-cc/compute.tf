@@ -6,7 +6,7 @@ resource "openstack_compute_instance_v2" "csail_ccdist_master" {
   flavor_name = "lg.2core"
   security_groups = ["default", "ssh"]
   network {
-    port = openstack_networking_port_v2.master_port.id
+    name = data.openstack_networking_network_v2.csail_inet.name
   }
   metadata = {
     "csail" = "true"
