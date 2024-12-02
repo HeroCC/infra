@@ -1,0 +1,87 @@
+---
+variant: flatcar
+version: 1.1.0
+passwd:
+  users:
+    - name: core
+      ssh_authorized_keys:
+        - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDoitx/WZRywOLPejrHn5COzkuV1pd9ix4hMlRVuYQ3oCo1ejJzFPkb3aECCpM3HQbU/DJXWfEdT/mr/IQO0V6uahYWMkJo9L2Kj2OstYFcC+1wPWa+2mOmv26qTUMq1PywNDWv4uRhzubFj8Bfqzn2KEtagJtpqdI47ybrWpovdKeLznPm7SV/hz9v0YlkLLqti6H2TtMjzMLzcGjSHXXd/yaaWKXbXuIQAgN3SxdHxOOQwTRRlHn/cnzmOBLZrJdPk+Ithm4spBjd8Lw8QbHu2XG1kd8ooZfcECwffkdv0LcOffBiJfu5ifg0Sj+XCwhGqsEPIuNXiRzf+rMW0ztLGp6VojwmqdbMniL+sLDIvrvuVFqUD1Yh1MmZu2S4gY72mEnizD66J5byKzJTalh1Ah0g8AL1s1AGe9TrYTMtG35llLeKTqPlYIpq1qFtkpwIWTxIE8bc402UQWRDekJdkRxbozZJoMdx5MtggxjQDIWRjM9sr3i/VSXjRzHVhBs= conlanc@skellige.local"
+
+storage:
+  files:
+    - path: /etc/hostname
+      mode: 0644
+      overwrite: true
+      contents:
+        inline: ${ hostname }
+
+    - path: /etc/sysupdate.d/noop.conf
+      contents:
+        source: https://github.com/flatcar/sysext-bakery/releases/download/latest/noop.conf
+
+    # TODO can we get systemd-sysupdate to coldstart itself?
+    - path: /opt/extensions/k3s/k3s-v1.31.1+k3s1-x86-64.raw
+      contents:
+        source: https://github.com/flatcar/sysext-bakery/releases/download/latest/k3s-v1.31.1+k3s1-x86-64.raw
+
+    # We only want to upgrade k3s patch versions. Minor (aka major) versions can be done manually
+    - path: /etc/sysupdate.k3s.d/k3s.conf
+      contents:
+        source: https://github.com/flatcar/sysext-bakery/releases/download/latest/k3s-v1.31.conf
+
+    - path: /etc/rancher/k3s/config.yaml.d/00-k3s.yaml
+      contents:
+        inline: |
+          write-kubeconfig-mode: 644
+          disable: traefik,servicelb
+          secrets-encryption: true
+
+  links:
+    - target: /opt/extensions/k3s/k3s-v1.31.1+k3s1-x86-64.raw
+      path: /etc/extensions/k3s.raw
+      hard: false
+
+    - path: /etc/systemd/system/multi-user.target.wants/k3s.service
+      target: /usr/local/lib/systemd/system/k3s.service
+      overwrite: true
+
+    - path: /etc/extensions/docker-flatcar.raw
+      target: /dev/null
+      overwrite: true
+
+    - path: /etc/extensions/containerd-flatcar.raw
+      target: /dev/null
+      overwrite: true
+
+systemd:
+  units:
+    - name: systemd-sysupdate.timer
+      enabled: true
+
+    - name: systemd-sysupdate.service
+      dropins:
+        - name: k3s.conf
+          contents: |
+            [Service]
+            ExecStartPre=/usr/lib/systemd/systemd-sysupdate -C k3s update
+        - name: sysext.conf
+          contents: |
+            [Service]
+            ExecStartPost=systemctl restart systemd-sysext
+
+    - name: k3s.service
+      enabled: true
+      dropins:
+        - name: 20_client_env.conf
+          contents: |
+            [Service]
+            Environment=K3S_TOKEN=${ server_token }
+            Environment=K3S_AGENT_TOKEN=${ agent_token }
+
+    - name: k3s-agent.service
+      enabled: true
+      dropins:
+        - name: 20_client_env.conf
+          contents: |
+            [Service]
+            Environment=K3S_AGENT_TOKEN=${ agent_token }

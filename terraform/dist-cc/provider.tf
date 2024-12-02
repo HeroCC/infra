@@ -4,6 +4,10 @@ terraform {
       source = "hashicorp/cloudinit"
       version = "~> 2.3.4"
     }
+    ct = {
+      source  = "poseidon/ct"
+      version = "~> 0.13.0"
+    }
     gitlab = {
       source  = "gitlabhq/gitlab"
       version = "~> 16.8.1"
