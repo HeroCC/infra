@@ -44,7 +44,6 @@ variable "openstack_password" {
   sensitive = true
 }
 
-
 variable "flatcar_version" {
   type        = string
   description = "The Flatcar version associated to the release channel"
@@ -59,5 +58,28 @@ variable "flatcar_release_channel" {
   validation {
     condition     = contains(["lts", "stable", "beta", "alpha"], var.flatcar_release_channel)
     error_message = "release_channel must be lts, stable, beta, or alpha."
+  }
+}
+
+variable "nodes" {
+  type = map(object({
+    role     = string
+    flavor   = string
+  }))
+
+  validation {
+    condition     = alltrue([for n in var.nodes : contains(["client", "server"], n.role)])
+    error_message = "role must be a k3s node type"
+  }
+
+  default = {
+    "ccdist-01" = {
+      role     = "server"
+      flavor   = "lg.2core"
+    },
+    "ccdist-02" = {
+      role     = "client"
+      flavor   = "lg.12core"
+    }
   }
 }

@@ -32,18 +32,20 @@ storage:
     - path: /etc/rancher/k3s/config.yaml.d/00-k3s.yaml
       contents:
         inline: |
+          %{ if role == "server" }
           write-kubeconfig-mode: 644
           disable: traefik,servicelb
           disable-helm-controller: true
           secrets-encryption: true
+          %{ endif }
 
   links:
     - target: /opt/extensions/k3s/k3s-v1.31.1+k3s1-x86-64.raw
       path: /etc/extensions/k3s.raw
       hard: false
 
-    - path: /etc/systemd/system/multi-user.target.wants/k3s.service
-      target: /usr/local/lib/systemd/system/k3s.service
+    - path: '/etc/systemd/system/multi-user.target.wants/${ role == "server" ? "k3s" : "k3s-agent"}.service'
+      target: '/usr/local/lib/systemd/system/${ role == "server" ? "k3s" : "k3s-agent"}.service'
       overwrite: true
 
     - path: /etc/extensions/docker-flatcar.raw
@@ -71,6 +73,7 @@ systemd:
             ExecStartPost=systemctl restart systemd-sysext
             ExecStartPost=touch /run/reboot-required
 
+%{ if role == "server" }
     - name: k3s.service
       enabled: true
       dropins:
@@ -79,11 +82,12 @@ systemd:
             [Service]
             Environment=K3S_TOKEN=${ server_token }
             Environment=K3S_AGENT_TOKEN=${ agent_token }
-
+%{ else }
     - name: k3s-agent.service
       enabled: true
       dropins:
         - name: 20_client_env.conf
           contents: |
             [Service]
-            Environment=K3S_AGENT_TOKEN=${ agent_token }
+            Environment=K3S_TOKEN=${ agent_token }
+%{ endif }
