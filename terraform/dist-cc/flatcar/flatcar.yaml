@@ -69,6 +69,7 @@ systemd:
           contents: |
             [Service]
             ExecStartPost=systemctl restart systemd-sysext
+            ExecStartPost=touch /run/reboot-required
 
     - name: k3s.service
       enabled: true
