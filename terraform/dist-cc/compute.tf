@@ -2,7 +2,8 @@
 
 resource "openstack_compute_instance_v2" "csail_ccdist_master" {
   name = "ccdist-csail-master"
-  //image_name = openstack_images_image_v2.kairos_ubuntu_24.name
+  image_id = openstack_images_image_v2.flatcar.id
+  user_data = data.ct_config.machine-ignitions.rendered
   flavor_name = "lg.2core"
   security_groups = ["default", "ssh"]
   network {
@@ -11,30 +12,6 @@ resource "openstack_compute_instance_v2" "csail_ccdist_master" {
   metadata = {
     "csail" = "true"
   }
-
-  // https://blog.andyserver.com/2021/06/booting-iso-in-openstack-environments/
-  block_device {
-    // Used on all subsequent boots
-    source_type           = "blank"
-    destination_type      = "volume"
-    device_type           = "disk"
-    volume_size           = 30
-    boot_index            = 0
-    delete_on_termination = true
-  }
-
-  // https://docs.openstack.org/nova/latest/user/block-device-mapping.html
-  block_device {
-    // Boot from "CD" volume & install
-    uuid                  = openstack_images_image_v2.kairos_ubuntu_24.id
-    source_type           = "image"
-    device_type           = "cdrom"
-    volume_size           = 5
-    boot_index            = 1
-    destination_type      = "volume"
-    delete_on_termination = true
-  }
-  user_data = data.template_file.kairos_master.rendered
 }
 
 # resource "openstack_blockstorage_volume_v3" "kairos_install_volume" {
