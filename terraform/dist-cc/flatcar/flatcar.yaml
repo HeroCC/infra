@@ -34,6 +34,7 @@ storage:
         inline: |
           write-kubeconfig-mode: 644
           disable: traefik,servicelb
+          disable-helm-controller: true
           secrets-encryption: true
 
   links:
