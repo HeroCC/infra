@@ -26,13 +26,6 @@ resource "openstack_networking_subnet_v2" "csail_ccdist_network_subnet" {
   ip_version = 4
 }
 
-resource "openstack_networking_subnet_route_v2" "csail_ccdist_network_subnet_route" {
-  subnet_id        = openstack_networking_subnet_v2.csail_ccdist_network_subnet.id
-  destination_cidr = "169.254.169.254/32"
-  // Fixes routing to the metadata service. Provided by `cloud-net` subnet of `inet`
-  next_hop         = "128.52.160.134"
-}
-
 resource "openstack_networking_router_interface_v2" "attach_router_to_subnet" {
   router_id = openstack_networking_router_v2.csail_ccdist_router.id
   subnet_id = openstack_networking_subnet_v2.csail_ccdist_network_subnet.id
