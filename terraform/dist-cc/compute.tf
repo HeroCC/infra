@@ -9,7 +9,7 @@ resource "openstack_compute_instance_v2" "csail_nodes" {
   flavor_name = each.value.flavor
   security_groups = ["default", "ssh"]
   network {
-    name = data.openstack_networking_network_v2.csail_inet.name
+    name = openstack_networking_network_v2.csail_ccdist_network.name
   }
   metadata = {
     "csail" = "true"
