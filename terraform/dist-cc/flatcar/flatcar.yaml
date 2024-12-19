@@ -73,21 +73,15 @@ systemd:
             ExecStartPost=systemctl restart systemd-sysext
             ExecStartPost=touch /run/reboot-required
 
-%{ if role == "server" }
-    - name: k3s.service
+    - name: '${ role == "server" ? "k3s" : "k3s-agent"}.service'
       enabled: true
       dropins:
         - name: 20_client_env.conf
           contents: |
             [Service]
+            %{ if role == "server" }
             Environment=K3S_TOKEN=${ server_token }
             Environment=K3S_AGENT_TOKEN=${ agent_token }
-%{ else }
-    - name: k3s-agent.service
-      enabled: true
-      dropins:
-        - name: 20_client_env.conf
-          contents: |
-            [Service]
+            %{ else }
             Environment=K3S_TOKEN=${ agent_token }
-%{ endif }
+            %{ endif }
