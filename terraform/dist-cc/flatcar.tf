@@ -15,6 +15,9 @@ data "template_file" "flatcar_template" {
     role = each.value.role
     server_token = random_id.k3s_server_token.hex
     agent_token = random_id.k3s_agent_token.hex
+    zerotier_network_id = zerotier_network.zt_homelab.id
+    zerotier_public_key = zerotier_identity.zerotier_node_identity[each.key].public_key
+    zerotier_private_key = zerotier_identity.zerotier_node_identity[each.key].private_key
   }
 }
 
@@ -23,4 +26,8 @@ data "ct_config" "flatcar_template" {
 
   strict   = true
   content  = data.template_file.flatcar_template[each.key].rendered
+
+  # snippets = [
+  #   file("${path.module}/flatcar/zerotier.service"),
+  # ]
 }

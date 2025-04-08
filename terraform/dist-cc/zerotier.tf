@@ -2,7 +2,7 @@ resource "zerotier_network" "zt_homelab" {
   name = "CCloud"
 
   assign_ipv6 {
-    rfc4193 = true
+    rfc4193 = false
   }
 
   assignment_pool {
@@ -24,4 +24,5 @@ resource "zerotier_member" "zerotier_node_network_membership" {
   name = each.key
   network_id = zerotier_network.zt_homelab.id
   member_id = zerotier_identity.zerotier_node_identity[each.key].id
+  ip_assignments = ["10.242.0.${index(keys(var.nodes), each.key) + 50}"]
 }
