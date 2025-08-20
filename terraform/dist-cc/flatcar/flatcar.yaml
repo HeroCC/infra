@@ -102,7 +102,7 @@ systemd:
         ExecStartPre=/usr/bin/docker pull zerotier/zerotier:1.14.2
         ExecStart=/usr/bin/docker run --rm --name %n \
             --cap-add NET_ADMIN --cap-add SYS_ADMIN --device /dev/net/tun --network=host \
-            -e ZEROTIER_JOIN_NETWORKS -e ZEROTIER_IDENTITY_PUBLIC -e ZEROTIER_IDENTITY_SECRET \
+            -e ZEROTIER_JOIN_NETWORKS -e ZEROTIER_IDENTITY_PUBLIC -e ZEROTIER_IDENTITY_SECRET -e ZEROTIER_LOCAL_CONF \
             zerotier/zerotier:1.14.2
 
         [Install]
@@ -114,4 +114,5 @@ systemd:
             Environment=ZEROTIER_JOIN_NETWORKS=${ zerotier_network_id }
             Environment=ZEROTIER_IDENTITY_PUBLIC=${ zerotier_public_key }
             Environment=ZEROTIER_IDENTITY_SECRET=${ zerotier_private_key }
+            Environment=ZEROTIER_LOCAL_CONF="allowDNS=1"
 
