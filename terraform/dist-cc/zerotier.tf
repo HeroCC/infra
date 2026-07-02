@@ -24,5 +24,6 @@ resource "zerotier_member" "zerotier_node_network_membership" {
   name           = each.key
   network_id     = zerotier_network.zt_homelab.id
   member_id      = zerotier_identity.zerotier_node_identity[each.key].id
+  authorized     = true
   ip_assignments = [local.zerotier_node_ips[each.key]]
 }

@@ -24,26 +24,6 @@ data "talos_machine_configuration" "node" {
             enabled = true
           }
         }
-        files = [
-          {
-            path        = "/var/lib/zerotier-one/identity.public"
-            op          = "create"
-            permissions = 420
-            content     = zerotier_identity.zerotier_node_identity[each.key].public_key
-          },
-          {
-            path        = "/var/lib/zerotier-one/identity.secret"
-            op          = "create"
-            permissions = 384
-            content     = zerotier_identity.zerotier_node_identity[each.key].private_key
-          },
-          {
-            path        = "/var/lib/zerotier-one/networks.d/${zerotier_network.zt_homelab.id}.conf"
-            op          = "create"
-            permissions = 420
-            content     = ""
-          },
-        ]
       }
       cluster = {
         discovery = {
@@ -56,6 +36,15 @@ data "talos_machine_configuration" "node" {
           }
         }
       }
+    }),
+    yamlencode({
+      apiVersion = "v1alpha1"
+      kind       = "ExtensionServiceConfig"
+      name       = "zerotier"
+      environment = [
+        "ZEROTIER_NETWORK=${zerotier_network.zt_homelab.id}",
+        "ZEROTIER_IDENTITY_SECRET=${zerotier_identity.zerotier_node_identity[each.key].private_key}",
+      ]
     })
   ]
 }
