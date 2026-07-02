@@ -14,10 +14,15 @@ variable "sops_gpg_key" {
   type      = string
 }
 
+variable "tailscale_token" {
+  sensitive = true
+  type      = string
+}
+
 # SSH Keys
 variable "gitlab_ssh_user_ids" {
-  type = set(string)
-  default = [ "90579" ]
+  type    = set(string)
+  default = ["90579"]
 }
 
 # Openstack Credentials
@@ -26,7 +31,7 @@ variable "openstack_auth_url" {
 }
 
 variable "openstack_project_id" {
-  type = string
+  type      = string
   sensitive = true
 }
 
@@ -35,46 +40,70 @@ variable "openstack_username" {
 }
 
 variable "openstack_password" {
-  type = string
+  type      = string
   sensitive = true
 }
 
-variable "flatcar_version" {
+variable "cluster_name" {
   type        = string
-  description = "The Flatcar version associated to the release channel"
-  default     = "current"
+  description = "Talos Kubernetes cluster name."
+  default     = "dist-cc"
 }
 
-variable "flatcar_release_channel" {
+variable "talos_version" {
   type        = string
-  description = "Flatcar Release channel"
-  default     = "stable"
+  description = "Talos Linux version used for Image Factory assets and machine config generation."
+  default     = "v1.13.5"
+}
 
-  validation {
-    condition     = contains(["lts", "stable", "beta", "alpha"], var.flatcar_release_channel)
-    error_message = "release_channel must be lts, stable, beta, or alpha."
-  }
+variable "kubernetes_version" {
+  type        = string
+  description = "Kubernetes version managed by the Talos provider."
+  default     = "v1.36.0"
+}
+
+variable "talos_install_disk" {
+  type        = string
+  description = "Disk device Talos should install to."
+  default     = "/dev/vda"
+}
+
+variable "talos_image_extensions" {
+  type        = list(string)
+  description = "Official Talos Image Factory system extensions to include."
+  default = [
+    "siderolabs/binfmt-misc",
+    "siderolabs/fuse3",
+    "siderolabs/nfsd",
+    "siderolabs/qemu-guest-agent",
+    "siderolabs/zerotier",
+  ]
 }
 
 variable "nodes" {
   type = map(object({
-    role     = string
-    flavor   = string
+    role   = string
+    flavor = string
   }))
 
   validation {
-    condition     = alltrue([for n in var.nodes : contains(["client", "server"], n.role)])
-    error_message = "role must be a k3s node type"
+    condition     = alltrue([for n in var.nodes : contains(["controlplane", "worker"], n.role)])
+    error_message = "role must be a Talos node type: controlplane or worker."
+  }
+
+  validation {
+    condition     = length([for n in var.nodes : n if n.role == "controlplane"]) > 0
+    error_message = "at least one node must have the controlplane role."
   }
 
   default = {
     "ccdist-01" = {
-      role     = "server"
-      flavor   = "lg.2core"
+      role   = "controlplane"
+      flavor = "lg.2core"
     },
     "ccdist-02" = {
-      role     = "client"
-      flavor   = "lg.12core"
+      role   = "worker"
+      flavor = "lg.12core"
     }
   }
 }

@@ -1,10 +1,25 @@
-# Create the OpenStack image by importing directly from the release servers
-resource "openstack_images_image_v2" "flatcar" {
-  name             = "flatcar-${var.flatcar_release_channel}-${var.flatcar_version}"
-  image_source_url = "https://${var.flatcar_release_channel}.release.flatcar-linux.net/amd64-usr/${var.flatcar_version}/flatcar_production_openstack_image.img.gz"
+resource "talos_image_factory_schematic" "talos" {
+  schematic = yamlencode({
+    customization = {
+      systemExtensions = {
+        officialExtensions = var.talos_image_extensions
+      }
+    }
+  })
+}
+
+data "talos_image_factory_urls" "talos" {
+  talos_version = var.talos_version
+  schematic_id  = talos_image_factory_schematic.talos.id
+  platform      = "openstack"
+}
+
+resource "openstack_images_image_v2" "talos" {
+  name             = "talos-${var.talos_version}-${substr(talos_image_factory_schematic.talos.id, 0, 12)}"
+  image_source_url = data.talos_image_factory_urls.talos.urls.disk_image
   image_cache_path = "${path.module}/.terraform/image_cache"
   container_format = "bare"
-  disk_format      = "qcow2"
+  disk_format      = "raw"
   visibility       = "private"
   decompress       = true
 }

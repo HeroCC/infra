@@ -1,24 +1,12 @@
 terraform {
   required_providers {
-    cloudinit = {
-      source = "hashicorp/cloudinit"
-      version = "~> 2.3.4"
-    }
-    ct = {
-      source  = "poseidon/ct"
-      version = "~> 0.13.0"
-    }
-    gitlab = {
-      source  = "gitlabhq/gitlab"
-      version = "~> 16.8.1"
-    }
     openstack = {
       source  = "terraform-provider-openstack/openstack"
       version = "~> 1.53.0"
     }
-    http = {
-      source  = "hashicorp/http"
-      version = "~> 3.4.2"
+    talos = {
+      source  = "siderolabs/talos"
+      version = "= 0.12.0-alpha.5"
     }
     zerotier = {
       source  = "zerotier/zerotier"
@@ -32,8 +20,8 @@ provider "zerotier" {
 }
 
 provider "openstack" {
-  user_name   = var.openstack_username
-  tenant_id   = var.openstack_project_id
-  password    = var.openstack_password
-  auth_url    = var.openstack_auth_url
+  user_name = var.openstack_username
+  tenant_id = var.openstack_project_id
+  password  = var.openstack_password
+  auth_url  = var.openstack_auth_url
 }

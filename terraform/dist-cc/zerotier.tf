@@ -6,8 +6,8 @@ resource "zerotier_network" "zt_homelab" {
   }
 
   assignment_pool {
-    start = "10.242.0.100"
-    end   = "10.242.0.250"
+    start = "10.242.0.5"
+    end   = "10.242.0.20"
   }
 
   route {
@@ -20,9 +20,9 @@ resource "zerotier_identity" "zerotier_node_identity" {
 }
 
 resource "zerotier_member" "zerotier_node_network_membership" {
-  for_each = var.nodes
-  name = each.key
-  network_id = zerotier_network.zt_homelab.id
-  member_id = zerotier_identity.zerotier_node_identity[each.key].id
-  ip_assignments = ["10.242.0.${index(keys(var.nodes), each.key) + 50}"]
+  for_each       = var.nodes
+  name           = each.key
+  network_id     = zerotier_network.zt_homelab.id
+  member_id      = zerotier_identity.zerotier_node_identity[each.key].id
+  ip_assignments = [local.zerotier_node_ips[each.key]]
 }
