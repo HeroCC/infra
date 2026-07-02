@@ -16,10 +16,6 @@ terraform {
       source  = "terraform-provider-openstack/openstack"
       version = "~> 1.53.0"
     }
-    template = {
-      source  = "hashicorp/template"
-      version = "~> 2.2.0"
-    }
     http = {
       source  = "hashicorp/http"
       version = "~> 3.4.2"
