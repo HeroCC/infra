@@ -1,0 +1,94 @@
+data "openstack_networking_network_v2" "csail_float" {
+  // Provided
+  name = "FLOAT"
+}
+
+data "openstack_networking_network_v2" "csail_inet" {
+  name = "inet"
+}
+
+resource "openstack_networking_router_v2" "csail_ccdist_router" {
+  name                = "kube-router"
+  admin_state_up      = true
+  external_network_id = data.openstack_networking_network_v2.csail_float.id
+}
+
+resource "openstack_networking_network_v2" "csail_ccdist_network" {
+  name           = "kube"
+  admin_state_up = true
+}
+
+resource "openstack_networking_subnet_v2" "csail_ccdist_network_subnet" {
+  name            = "subnet_1"
+  network_id      = openstack_networking_network_v2.csail_ccdist_network.id
+  cidr            = "192.168.199.0/24"
+  dns_nameservers = ["128.30.2.25", "128.30.2.23", "128.30.2.24"]
+  ip_version      = 4
+}
+
+resource "openstack_networking_router_interface_v2" "attach_router_to_subnet" {
+  router_id = openstack_networking_router_v2.csail_ccdist_router.id
+  subnet_id = openstack_networking_subnet_v2.csail_ccdist_network_subnet.id
+}
+
+resource "openstack_networking_secgroup_v2" "talos" {
+  name        = "talos"
+  description = "Talos, Kubernetes, KubeSpan, and intra-cluster traffic"
+}
+
+resource "openstack_networking_secgroup_rule_v2" "talos_api" {
+  direction         = "ingress"
+  ethertype         = "IPv4"
+  protocol          = "tcp"
+  port_range_min    = 50000
+  port_range_max    = 50000
+  remote_ip_prefix  = "0.0.0.0/0"
+  security_group_id = openstack_networking_secgroup_v2.talos.id
+}
+
+resource "openstack_networking_secgroup_rule_v2" "kubernetes_api" {
+  direction         = "ingress"
+  ethertype         = "IPv4"
+  protocol          = "tcp"
+  port_range_min    = 6443
+  port_range_max    = 6443
+  remote_ip_prefix  = "0.0.0.0/0"
+  security_group_id = openstack_networking_secgroup_v2.talos.id
+}
+
+resource "openstack_networking_secgroup_rule_v2" "kubespan" {
+  direction         = "ingress"
+  ethertype         = "IPv4"
+  protocol          = "udp"
+  port_range_min    = 51820
+  port_range_max    = 51820
+  remote_ip_prefix  = "0.0.0.0/0"
+  security_group_id = openstack_networking_secgroup_v2.talos.id
+}
+
+resource "openstack_networking_secgroup_rule_v2" "cluster_internal" {
+  direction         = "ingress"
+  ethertype         = "IPv4"
+  remote_ip_prefix  = openstack_networking_subnet_v2.csail_ccdist_network_subnet.cidr
+  security_group_id = openstack_networking_secgroup_v2.talos.id
+}
+
+resource "openstack_networking_port_v2" "master_port" {
+  name           = "master_port_1"
+  network_id     = openstack_networking_network_v2.csail_ccdist_network.id
+  admin_state_up = true
+
+  fixed_ip {
+    subnet_id = openstack_networking_subnet_v2.csail_ccdist_network_subnet.id
+  }
+}
+
+# resource "openstack_networking_portforwarding_v2" "master_ssh_port_forward" {
+#   internal_ip_address = openstack_networking_port_v2.master_port.all_fixed_ips[0]
+#   internal_port_id = openstack_networking_port_v2.master_port.id
+
+#   floatingip_id    = openstack_networking_port_v2.master_port.fixed_ip[0].id
+#   external_port    = 22
+#   internal_port    = 22
+#   protocol         = "tcp"
+# }
