@@ -4,25 +4,9 @@ variable "zerotier_central_token" {
   type      = string
 }
 
-variable "edgevpn_token" {
-  sensitive = true
-  type      = string
-}
-
 variable "sops_gpg_key" {
   sensitive = true
   type      = string
-}
-
-variable "tailscale_token" {
-  sensitive = true
-  type      = string
-}
-
-# SSH Keys
-variable "gitlab_ssh_user_ids" {
-  type    = set(string)
-  default = ["90579"]
 }
 
 # Openstack Credentials
@@ -75,7 +59,7 @@ variable "talos_image_extensions" {
     "siderolabs/binfmt-misc",
     "siderolabs/fuse3",
     "siderolabs/nfsd",
-    "siderolabs/qemu-guest-agent",
+    # "siderolabs/qemu-guest-agent",
     "siderolabs/zerotier",
   ]
 }
