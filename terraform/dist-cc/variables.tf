@@ -43,7 +43,7 @@ variable "cluster_name" {
 variable "talos_version" {
   type        = string
   description = "Talos Linux version used for Image Factory assets and machine config generation."
-  default     = "v1.13.5"
+  default     = "v1.14.4"
 }
 
 variable "kubernetes_version" {
