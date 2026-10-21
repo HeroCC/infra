@@ -4,10 +4,18 @@ locals {
   # Keep the controller pin and sync resources in GitOps, shared with Talos.
   flux_install_url = yamldecode(file("${local.gitops_path}/kustomization.yaml")).resources[0]
 
-  flux_bootstrap_manifests = [
-    {
-      name = "flux-sops-keys"
-      contents = yamlencode({
+  flux_bootstrap_patches = [
+    yamlencode({
+      apiVersion = "v1alpha1"
+      kind       = "KubeExternalManifestConfig"
+      name       = "flux"
+      url        = local.flux_install_url
+    }),
+    yamlencode({
+      apiVersion = "v1alpha1"
+      kind       = "KubeInlineManifestConfig"
+      name       = "flux-sops-keys"
+      manifest = yamlencode({
         apiVersion = "v1"
         kind       = "Secret"
         metadata = {
@@ -19,10 +27,12 @@ locals {
           "age.agekey" = base64encode(var.sops_age_key)
         }
       })
-    },
-    {
-      name     = "flux-sync"
-      contents = file("${local.gitops_path}/flux-system/gotk-sync.yaml")
-    },
+    }),
+    yamlencode({
+      apiVersion = "v1alpha1"
+      kind       = "KubeInlineManifestConfig"
+      name       = "flux-sync"
+      manifest   = file("${local.gitops_path}/flux-system/gotk-sync.yaml")
+    }),
   ]
 }

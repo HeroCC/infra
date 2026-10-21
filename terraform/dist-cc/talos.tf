@@ -12,7 +12,7 @@ data "talos_machine_configuration" "node" {
   talos_version      = var.talos_version
   kubernetes_version = var.kubernetes_version
 
-  config_patches = [
+  config_patches = concat([
     yamlencode({
       machine = {
         install = {
@@ -26,9 +26,6 @@ data "talos_machine_configuration" "node" {
         }
       }
       cluster = {
-        # Talos seeds Flux only on control planes; Flux owns reconciliation.
-        extraManifests  = each.value.role == "controlplane" ? [local.flux_install_url] : []
-        inlineManifests = each.value.role == "controlplane" ? local.flux_bootstrap_manifests : []
         discovery = {
           enabled = true
           registries = {
@@ -49,7 +46,7 @@ data "talos_machine_configuration" "node" {
         "ZEROTIER_IDENTITY_SECRET=${zerotier_identity.zerotier_node_identity[each.key].private_key}",
       ]
     })
-  ]
+  ], each.value.role == "controlplane" ? local.flux_bootstrap_patches : [])
 }
 
 data "talos_client_configuration" "cluster" {
