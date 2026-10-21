@@ -1,0 +1,68 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: asf-configmap
+    namespace: default
+data:
+    ASF.json: |
+        {
+          "Headless": true,
+          "IPC": true,
+          "s_SteamOwnerID": "76561198078125364",
+          "SteamTokenDumperPluginEnabled": true
+        }
+    HC1.json: |
+        {
+          "Enabled": true,
+          "SteamLogin": "heroicbot1",
+          "PasswordFormat": "1",
+          "SteamPassword": "toNKb0hdWcdcT8/ETB/ykUIocovmQoWmN4Q5MW3BvNwwAvVhEDpWIB4FXtVs9+KX",
+          "s_SteamMasterClanID": "103582791456061651",
+          "UseLoginKeys": false,
+          "AutoSteamSaleEvent": true
+        }
+    HC2.json: |
+        {
+          "Enabled": true,
+          "SteamLogin": "heroicb2",
+          "PasswordFormat": "1",
+          "SteamPassword": "toNKb0hdWcdcT8/ETB/ykUIocovmQoWmN4Q5MW3BvNwwAvVhEDpWIB4FXtVs9+KX",
+          "s_SteamMasterClanID": "103582791456061651",
+          "UseLoginKeys": false,
+          "AutoSteamSaleEvent": true
+        }
+    HC3.json: |
+        {
+          "Enabled": true,
+          "SteamLogin": "stheamy3",
+          "PasswordFormat": "1",
+          "SteamPassword": "toNKb0hdWcdcT8/ETB/ykUIocovmQoWmN4Q5MW3BvNwwAvVhEDpWIB4FXtVs9+KX",
+          "s_SteamMasterClanID": "103582791456061651",
+          "UseLoginKeys": false,
+          "AutoSteamSaleEvent": true
+        }
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IHBpdi1wMjU2IEd0TUR4USBBejJqNmlD
+            TGp2K2NabDJrZUxWOWp5UVh2Sm9uak1TQU82MEZIL20yVnl2NApiK2xlSll4WWJZ
+            R1Avd2w3RHlJWVNFV1NTSUZVNWVkSjdQUG9ldmU5YmdRCi0tLSBjTkdNTWJPL01h
+            SlRocm94aktSNlpOQjJhRUs5STVCUlNJTVRwSXQ3MWRrCjsl68uNMBaSpO7LfvdL
+            vHyi7l4f7zwnSc0v3clfv5xEGMycOK1Jcdg0dD3LBQFNKPV7JwFPVa3HPhj3Vn+K
+            UUI=
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1se1qdqspdqrrayyq7ufh4pptrva897ade86gy4dvlpar944vqwfmj4nv2emh0y
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBHMHRkbHZPOXl5NGJ5dmJr
+            Ty9odzFUTUhpaEJCcmRDVjFOSENUU3JEd1VvCnJjN201SG41blBucHlwMTJERjBW
+            TkRpdDAwQkI0bW1OUU9iQUVoWWdtSzAKLS0tIHhmNWlDZXJUYVorbFFsK293MTlo
+            cGNYajVHaUwwTHVjdmF1UDVxaVVZak0KHzaItVazsANyKeGDnWuAL3+dAJ+sIIZI
+            hSG83vb0CqfpekeUCSZJNMr4+FJcDkB0DLrOCUq3osHwLDS+Q5CrQg==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1vh73cy3hwh7e6hvm0wq5y2dl6l4avch3vqkawvqec9dtzawvd58qwsg98a
+    encrypted_suffix: .maFile
+    lastmodified: "2020-09-09T19:51:34Z"
+    mac: ENC[AES256_GCM,data:bfKwPSUAMgx6YiUT2wQl5kFfYjY4wTaTHNVFUg/6OVKjCctLmRFpY3udub/7UC2PC4XgWVQedKweVpn8fKLH6MkQEiK+jjMefgmcbhwr0exRWWMmucifbB3uSrE2/lcCVd/gpiuAKWuj1KGOeDnvRJKGDHxDB7dELhR/3jaZeQc=,iv:wkEy0HYlKI7bGQFESru1c3yQBTL46sp7ACbGDkspm2g=,tag:7VFAlbwqwwLm+hOaoryHvA==,type:str]
+    version: 3.6.0
