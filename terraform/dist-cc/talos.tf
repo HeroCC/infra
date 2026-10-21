@@ -26,6 +26,9 @@ data "talos_machine_configuration" "node" {
         }
       }
       cluster = {
+        # Talos seeds Flux only on control planes; Flux owns reconciliation.
+        extraManifests  = each.value.role == "controlplane" ? [local.flux_install_url] : []
+        inlineManifests = each.value.role == "controlplane" ? local.flux_bootstrap_manifests : []
         discovery = {
           enabled = true
           registries = {

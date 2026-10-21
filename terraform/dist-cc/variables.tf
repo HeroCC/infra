@@ -4,9 +4,15 @@ variable "zerotier_central_token" {
   type      = string
 }
 
-variable "sops_gpg_key" {
-  sensitive = true
-  type      = string
+variable "sops_age_key" {
+  description = "Dedicated software age identity for Flux SOPS decryption. Stored in Terraform state and Talos machine configuration."
+  sensitive   = true
+  type        = string
+
+  validation {
+    condition     = can(regex("(?m)^AGE-SECRET-KEY-1[0-9A-Z]+", var.sops_age_key))
+    error_message = "Provide a software age identity containing an AGE-SECRET-KEY-1 line."
+  }
 }
 
 # Openstack Credentials
