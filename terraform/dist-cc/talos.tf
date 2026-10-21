@@ -45,7 +45,23 @@ data "talos_machine_configuration" "node" {
         "ZEROTIER_IDENTITY_SECRET=${zerotier_identity.zerotier_node_identity[each.key].private_key}",
       ]
     })
-  ], each.value.role == "controlplane" ? local.flux_bootstrap_patches : [])
+    ], each.value.role == "controlplane" ? concat([
+      # Expose authenticated HTTPS metrics to the Datadog node Agent.
+      yamlencode({
+        apiVersion = "v1alpha1"
+        kind       = "KubeControllerManagerConfig"
+        extraArgs = {
+          bind-address = "0.0.0.0"
+        }
+      }),
+      yamlencode({
+        apiVersion = "v1alpha1"
+        kind       = "KubeSchedulerConfig"
+        extraArgs = {
+          bind-address = "0.0.0.0"
+        }
+      })
+  ], local.flux_bootstrap_patches) : [])
 }
 
 data "talos_client_configuration" "cluster" {
