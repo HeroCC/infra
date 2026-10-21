@@ -4,8 +4,6 @@ apiVersion: "datadoghq.com/v2alpha1"
 metadata:
   name: "datadog"
   namespace: "datadog"
-  annotations:
-    agent.datadoghq.com/appsec.injector.enabled: "true"
 spec:
   global:
     clusterName: "ccdist"
@@ -25,6 +23,9 @@ spec:
           operator: Exists
           effect: NoSchedule
   features:
+    appsec:
+      injector:
+        enabled: true
     clusterChecks:
       enabled: true
     orchestratorExplorer:
