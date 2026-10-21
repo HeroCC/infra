@@ -20,7 +20,7 @@ spec:
     nodeAgent:
       env:
         - name: DD_IGNORE_AUTOCONF
-          value: "etcd kube_scheduler kube_controller_manager"
+          value: "etcd"
       extraConfd: # https://docs.datadoghq.com/containers/kubernetes/control_plane/?tab=datadogoperator#TalosLinux
         configDataMap:
           etcd.yaml: |-
@@ -34,22 +34,6 @@ spec:
                 tls_ca_cert: /host/etc/kubernetes/pki/etcd/ca.crt
                 tls_cert: /host/etc/kubernetes/pki/etcd/server.crt
                 tls_private_key: /host/etc/kubernetes/pki/etcd/server.key
-          kube_scheduler.yaml: |-
-            ad_identifiers:
-              - kube-scheduler
-            init_config: {}
-            instances:
-              - prometheus_url: https://%%host%%:10259/metrics
-                ssl_verify: false
-                bearer_token_auth: true
-          kube_controller_manager.yaml: |-
-            ad_identifiers:
-              - kube-controller-manager
-            init_config: {}
-            instances:
-              - prometheus_url: https://%%host%%:10257/metrics
-                ssl_verify: false
-                bearer_token_auth: true
       containers:
         agent:
           volumeMounts:
