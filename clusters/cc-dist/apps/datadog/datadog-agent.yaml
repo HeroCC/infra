@@ -18,6 +18,12 @@ spec:
         keyName: "api-key"
     tags:
       - "env:prod"
+  override:
+    nodeAgent:
+      tolerations:
+        - key: node-role.kubernetes.io/control-plane
+          operator: Exists
+          effect: NoSchedule
   features:
     clusterChecks:
       enabled: true
