@@ -49,7 +49,7 @@ variable "talos_version" {
 variable "kubernetes_version" {
   type        = string
   description = "Kubernetes version managed by the Talos provider."
-  default     = "v1.36.0"
+  default     = "v1.37.1"
 }
 
 variable "talos_install_disk" {
