@@ -1,5 +1,10 @@
 resource "talos_machine_secrets" "cluster" {
   talos_version = var.talos_version
+
+  # The version is a creation-time secrets format, not an OS upgrade target.
+  lifecycle {
+    ignore_changes = [talos_version]
+  }
 }
 
 data "talos_machine_configuration" "node" {

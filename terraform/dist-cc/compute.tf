@@ -10,6 +10,12 @@ resource "openstack_compute_instance_v2" "csail_nodes" {
   flavor_name     = each.value.flavor
   security_groups = ["default", "ssh", openstack_networking_secgroup_v2.talos.name]
 
+  # These are creation-time inputs. Talos manages existing nodes in place;
+  # changing the OS version or machine config must not recreate their VMs.
+  lifecycle {
+    ignore_changes = [image_id, user_data]
+  }
+
   depends_on = [
     openstack_networking_router_interface_v2.attach_router_to_subnet,
   ]
