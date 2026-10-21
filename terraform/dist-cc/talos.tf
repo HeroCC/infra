@@ -19,28 +19,22 @@ data "talos_machine_configuration" "node" {
 
   config_patches = concat([
     yamlencode({
-      machine = {
-        install = {
-          disk  = var.talos_install_disk
-          image = data.talos_image_factory_urls.talos.urls.installer
-        }
-        network = {
-          kubespan = {
-            enabled = true
-          }
+      apiVersion = "v1alpha1"
+      kind       = "UnattendedInstallConfig"
+      installer = {
+        image = data.talos_image_factory_urls.talos.urls.installer
+      }
+      provisioning = {
+        diskSelector = {
+          match = "disk.dev_path == ${jsonencode(var.talos_install_disk)}"
         }
       }
-      cluster = {
-        discovery = {
-          enabled = true
-          registries = {
-            kubernetes = {
-              disabled = true
-            }
-            service = {}
-          }
-        }
-      }
+    }),
+    # The 1.14 generator supplies DiscoveryServiceConfig and its identity.
+    yamlencode({
+      apiVersion = "v1alpha1"
+      kind       = "KubeSpanConfig"
+      enabled    = true
     }),
     yamlencode({
       apiVersion = "v1alpha1"
