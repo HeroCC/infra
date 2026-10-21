@@ -1,0 +1,66 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: flux-system
+  namespace: flux-system
+spec:
+  interval: 1m
+  url: https://github.com/HeroCC/infra.git
+  ref:
+    branch: master
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: flux-system
+  namespace: flux-system
+spec:
+  interval: 10m
+  retryInterval: 1m
+  path: ./clusters/cc-dist
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: helm
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: flux-system
+  interval: 10m
+  retryInterval: 1m
+  path: ./clusters/cc-dist/helm
+  prune: true
+  wait: true
+  timeout: 5m
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-keys
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: workloads
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: helm
+  interval: 10m
+  retryInterval: 1m
+  path: ./clusters/cc-dist/workloads
+  prune: true
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-keys
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
