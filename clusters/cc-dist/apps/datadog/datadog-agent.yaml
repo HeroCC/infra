@@ -9,6 +9,8 @@ metadata:
 spec:
   global:
     clusterName: "ccdist"
+    kubelet:
+      tlsVerify: false
     site: "datadoghq.com"
     credentials:
       apiSecret:
