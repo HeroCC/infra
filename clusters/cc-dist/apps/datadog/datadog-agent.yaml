@@ -93,6 +93,9 @@ spec:
       enabled: true
     sbom:
       enabled: true
+      enrichment:
+        usage:
+          enabled: true
       containerImage:
         enabled: true
       host:
