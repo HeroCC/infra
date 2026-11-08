@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: asf
+  name: asf
+  namespace: default
+spec:
+  ports:
+  - name: asf
+    port: 1242
+    protocol: TCP
+  selector:
+    app: asf
+  sessionAffinity: None
