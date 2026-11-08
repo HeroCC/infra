@@ -24,9 +24,7 @@ spec:
   values:
     fullnameOverride: traefik
     rbac:
-      enabled: false
-    serviceAccount:
-      name: default
+      enabled: true
     deployment:
       replicas: 2
     service:

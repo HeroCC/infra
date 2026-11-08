@@ -15,6 +15,7 @@ spec:
       labels:
         app: external-dns
     spec:
+      serviceAccountName: external-dns
       securityContext:
         runAsNonRoot: true
         runAsUser: 65532
