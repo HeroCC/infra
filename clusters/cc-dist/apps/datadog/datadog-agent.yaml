@@ -6,6 +6,13 @@ metadata:
   namespace: "datadog"
 spec:
   global:
+    csi:
+      enabled: true
+      # Supply sockets to workloads on control-plane nodes as well as workers.
+      tolerations:
+        - key: node-role.kubernetes.io/control-plane
+          operator: Exists
+          effect: NoSchedule
     clusterName: "ccdist"
     kubelet:
       tlsVerify: false
@@ -51,6 +58,9 @@ spec:
           operator: Exists
           effect: NoSchedule
   features:
+    admissionController:
+      # Keep Unix sockets without injecting hostPath volumes into application pods.
+      agentCommunicationMode: csi
     appsec:
       injector:
         enabled: true
