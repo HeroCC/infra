@@ -36,6 +36,15 @@ data "talos_machine_configuration" "node" {
       kind       = "KubeSpanConfig"
       enabled    = true
     }),
+    # Keep storage scheduling scoped to each node's configured topology.
+    yamlencode({
+      apiVersion = "v1alpha1"
+      kind       = "KubeNodeConfig"
+      labels = {
+        "topology.kubernetes.io/region" = each.value.region
+        "topology.kubernetes.io/zone"   = each.value.zone
+      }
+    }),
     yamlencode({
       apiVersion = "v1alpha1"
       kind       = "ExtensionServiceConfig"

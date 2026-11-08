@@ -71,9 +71,12 @@ variable "talos_image_extensions" {
 }
 
 variable "nodes" {
+  description = "Cluster nodes and their Kubernetes topology region and zone labels."
   type = map(object({
     role   = string
     flavor = string
+    region = string
+    zone   = string
   }))
 
   validation {
@@ -90,10 +93,14 @@ variable "nodes" {
     "ccdist-01" = {
       role   = "controlplane"
       flavor = "lg.2core"
+      region = "CSAIL_Stata"
+      zone   = "nova"
     },
     "ccdist-02" = {
       role   = "worker"
       flavor = "lg.12core"
+      region = "CSAIL_Stata"
+      zone   = "nova"
     }
   }
 }
