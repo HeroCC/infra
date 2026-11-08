@@ -1,0 +1,81 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cloudflared
+  namespace: network
+data:
+  config.yaml: |
+    tunnel: ${CLOUDFLARE_TUNNEL_ID}
+    credentials-file: /etc/cloudflare/credentials.json
+    metrics: 0.0.0.0:2000
+    ingress:
+      - hostname: "*.${SECRET_DOMAIN}"
+        service: http://traefik.network.svc.cluster.local:80
+      - service: http_status:404
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudflared
+  namespace: network
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cloudflared
+  template:
+    metadata:
+      labels:
+        app: cloudflared
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: cloudflared
+          image: cloudflare/cloudflared:2026.10.7
+          args: [tunnel, --no-autoupdate, --config=/etc/cloudflared/config.yaml, run]
+          ports:
+            - name: metrics
+              containerPort: 2000
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: metrics
+          livenessProbe:
+            httpGet:
+              path: /ready
+              port: metrics
+            initialDelaySeconds: 30
+            failureThreshold: 6
+          volumeMounts:
+            - name: config
+              mountPath: /etc/cloudflared
+              readOnly: true
+            - name: credentials
+              mountPath: /etc/cloudflare
+              readOnly: true
+          resources:
+            requests:
+              cpu: 10m
+              memory: 64Mi
+            limits:
+              memory: 256Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: [ALL]
+      volumes:
+        - name: config
+          configMap:
+            name: cloudflared
+        - name: credentials
+          secret:
+            secretName: cloudflare-tunnel-credentials
+            items:
+              - key: credentials.json
+                path: credentials.json

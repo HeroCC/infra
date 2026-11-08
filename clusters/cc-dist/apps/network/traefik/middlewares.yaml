@@ -1,0 +1,32 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: tunnel-https
+  namespace: network
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: tunnel-basic-auth
+  namespace: network
+spec:
+  basicAuth:
+    secret: tunnel-basic-auth
+    realm: ccdist
+    removeHeader: true
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: tunnel-auth
+  namespace: network
+spec:
+  chain:
+    middlewares:
+      # Redirect before challenging so credentials are only entered over HTTPS.
+      - name: tunnel-https
+      - name: tunnel-basic-auth
