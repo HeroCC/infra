@@ -37,7 +37,7 @@ spec:
       containers:
         - name: cloudflared
           image: cloudflare/cloudflared:2026.10.7
-          args: [tunnel, --no-autoupdate, --config=/etc/cloudflared/config.yaml, run]
+          args: [tunnel, --no-autoupdate, --config=/etc/cloudflared/config.yaml, --output=json, run]
           ports:
             - name: metrics
               containerPort: 2000

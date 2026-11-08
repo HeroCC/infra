@@ -23,6 +23,11 @@ spec:
     crds: Skip
   values:
     fullnameOverride: traefik
+    log:
+      format: json
+    accessLog:
+      enabled: true
+      format: json
     rbac:
       enabled: true
     deployment:
