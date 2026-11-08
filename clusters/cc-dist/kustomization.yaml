@@ -4,3 +4,4 @@ resources:
   # Terraform reads this URL too: one pin for bootstrap and GitOps upgrades.
   - https://github.com/fluxcd/flux2/releases/download/v2.9.6/install.yaml
   - flux-system/gotk-sync.yaml
+  - cluster-secrets.sops.yaml

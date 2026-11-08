@@ -24,6 +24,10 @@ spec:
   prune: true
   # Children depend on this root; waiting for them would create a cycle.
   wait: false
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-keys
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -49,6 +53,10 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: cluster-secrets
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -69,3 +77,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: cluster-secrets
