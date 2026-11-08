@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: discord-webhook
+    namespace: flux-system
+type: Opaque
+data:
+    address: ENC[AES256_GCM,data:JVHBwR6rxr3iVtl4luja36xVRBXAx+ATtJGavzUl5FqM4PD0ijTHBxo9ui3uEG43GzAp8mXAq+0NmELDOXR3daY+4zJ52c1tfhNEAyNtYYyqF7AwcIaGll5hXY2DbGHPe+jkE6Jlx3ybCTaBXS7gvA5Rr18PrDCdRMhqGf4Tt12WfPCgGpf0LOJ/8jAVyOocGPubsKXgNzWyvW7AbnUjmvNVhn0=,iv:KxEFMWgr0AcoLkEdQ8I40K2UggOy3lFEA/njDkJnQto=,tag:H7UPwYVbEEfNG2gynoNoiQ==,type:str]
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IHBpdi1wMjU2IEd0TUR4USBBL2ZTejN1
+            VitBUENDTWFHNWlVd0FhWXFpd1Y2djZrM05HeWdDMlEra0VlOAptTXV6L29VamZy
+            YUFhbTRLRnV5QURhYTRtT2tKNXFIU09EQk9WY2lBMEhNCi0tLSBqcDJVZUx6TGNF
+            dHJoL29iU0ZIaFFnelV2NGp0c2VMYXpJWlFyY2wvSUNnCn+2ibwgdBMRZinx9MLy
+            6M5ppo97qT1EfrCzsCYgsBm89LmJBfXQrhzmCNsV68czyXs/eYUHqyiod1KCnfyv
+            NHQ=
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1se1qdqspdqrrayyq7ufh4pptrva897ade86gy4dvlpar944vqwfmj4nv2emh0y
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAwOUo4ZnYxb052US9kU3BP
+            ZXN1OVdMZnpSWVFuYXp6Q3o5SEZiTHZYVGdFCmVaMTIySnI0U2xQcjdQd2JlaWx5
+            YVJTbnpHdXY5ODE5WHlYUWJCeHZZMlkKLS0tIHRXMUFUZnNtUGZQMHAxMDl2NEFI
+            TGVlV1NRaEVCdXorKzNTTldoUkZmbE0KZdptXjv1lTsuCXdzNqNdehUUeMNOv4K0
+            MjdM09cNHj1xg0w1pBVSkMCRz+THQ/KOyCCEpq1IHsU3WiESIJz6mQ==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1vh73cy3hwh7e6hvm0wq5y2dl6l4avch3vqkawvqec9dtzawvd58qwsg98a
+    encrypted_regex: ^(data|stringData)$
+    lastmodified: "2026-11-08T01:48:24Z"
+    mac: ENC[AES256_GCM,data:imaK5XAB0NesiYSUSWIbu6+Csz+xG0Mv9DU6NRFmf1d5tMA2VRbv6i9u7mjKYZ86XCkxHQpZTORxuWlzqv3j0G2nhXGU8kuJYAOQ31vtV43cB8W+Xamyu64i7BNkTsllmzHF2Z5sMCjOclZAA328AVOJ5VCvpOKN5CUaZtXXffw=,iv:9FL8cEf2SPpb0SRqSsCeCJj4b4BMeIYETlm/7LZiDDM=,tag:sOsUrnUSzcTMdR1R0lwzvQ==,type:str]
+    version: 3.13.3
