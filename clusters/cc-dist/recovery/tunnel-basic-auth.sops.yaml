@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: tunnel-basic-auth
+    namespace: network
+type: Opaque
+data:
+    users: ENC[AES256_GCM,data:y0muuUDnL0IqGgGgMyV948wwp2EmCNjLIp9TemK3DC8e/mqn9/Hit8QyEfLTg0W4L8c1q6WKRbmV7DwvAZPj0i4shhzm2CL5vuw3zckhia0sBlAEt7vbDUZwwW8=,iv:1FknUk0zAVWI2oJhxmICDpaKb5cRq29ozdICDlxNfvs=,tag:gskB8/IqB6smAVgQjABDfg==,type:str]
+    username: ENC[AES256_GCM,data:SFjMimZeXxQ=,iv:5JNCqxgF+AGT9WI/ByDGp3miAM1xIHnj8xtB1jwQUa4=,tag:F+Dhp+UL/uVPjp0BhDPb4Q==,type:str]
+    password: ENC[AES256_GCM,data:yMRe4OVE2FOvT3dLL+AQJti9D1y14L1Y3VBwKvTijgSYOAqJRD22kfpJC0/9lE5HKs82oIXnFir2XkJD,iv:dxXTAr/k0pY1SVs4P+bGXMLtcK6IY2jDBXrUA55cGzE=,tag:sNa6w296CO9GxeLkyga5yQ==,type:str]
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IHBpdi1wMjU2IEd0TUR4USBBajl5TitP
+            bER3dkJ1aHpqTTBueWNjVElZQU4xdU8wUDcyS09jQ1NGY3dyMApTTGZyYUo2elhQ
+            U2lwaGF5Z2xJaVAvdXJUdHlpRFdJYjFPTU1tbmsxcTUwCi0tLSAyOXVDVnQwWHpH
+            Sy9od1JWR3BlNkNMd1NETnFidTdJSlNJM29uWjlwL0FBCjMQk5kb0Y5/hUoWtqpS
+            +2PQLlfRP7+cg53zCQd5Wupm7g5MjG/D9OCKhSzZhTZXdcvJFuoyPPE9PKRX4mNK
+            XHk=
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1se1qdqspdqrrayyq7ufh4pptrva897ade86gy4dvlpar944vqwfmj4nv2emh0y
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAvd3ROaGZZdFoxTjRVY2wr
+            MU5ab2ZCeVVNRGlEenFTcXZTY0M1V3VSL2lnCjQyYitsT1FiU0lNTHA3WkYvS3ZB
+            REpLY1BsN1ZnWnpLa0M3OG05VW90YlEKLS0tIHJGVE9iMEFCa1NoRjMySWZQQWta
+            cnNvdXZTUDJxUi9ZZnhsQ3NDc1dsWjgKy4Qi9acsAl/VGDa8m2KYQ4AopmagWaeI
+            mOOJbLxX1o1XSpXiHkz/cnFKshRtwtW6MIiNMcNbtgulRMZzzSuBOw==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1vh73cy3hwh7e6hvm0wq5y2dl6l4avch3vqkawvqec9dtzawvd58qwsg98a
+    encrypted_regex: ^(data|stringData)$
+    lastmodified: "2026-11-08T02:43:19Z"
+    mac: ENC[AES256_GCM,data:jitr+khq/YymjJuK83NvurXQ9zAnOcioLcGBzTyP5McDIU9kuxeMT7cYx+fk0tb3gQj9JEHuhNKkMH40Bm35HFCGF6iplGiSb4ziaiNH7Y1tJuMRC96D2vKJ0FzzH/ThIWqUOhWINhAUvAQPlniv3uxXME5RC9xE4G4buJTVkBc=,iv:92PgQ4pMpOaSBCR7NyaPRVRRSAfJejCwXWKyva3eVZQ=,tag:gYBJOHgqelm3pMYliEeK5Q==,type:str]
+    version: 3.13.3

@@ -6,8 +6,6 @@ metadata:
 type: Opaque
 data:
     users: ENC[AES256_GCM,data:y0muuUDnL0IqGgGgMyV948wwp2EmCNjLIp9TemK3DC8e/mqn9/Hit8QyEfLTg0W4L8c1q6WKRbmV7DwvAZPj0i4shhzm2CL5vuw3zckhia0sBlAEt7vbDUZwwW8=,iv:1FknUk0zAVWI2oJhxmICDpaKb5cRq29ozdICDlxNfvs=,tag:gskB8/IqB6smAVgQjABDfg==,type:str]
-    username: ENC[AES256_GCM,data:SFjMimZeXxQ=,iv:5JNCqxgF+AGT9WI/ByDGp3miAM1xIHnj8xtB1jwQUa4=,tag:F+Dhp+UL/uVPjp0BhDPb4Q==,type:str]
-    password: ENC[AES256_GCM,data:yMRe4OVE2FOvT3dLL+AQJti9D1y14L1Y3VBwKvTijgSYOAqJRD22kfpJC0/9lE5HKs82oIXnFir2XkJD,iv:dxXTAr/k0pY1SVs4P+bGXMLtcK6IY2jDBXrUA55cGzE=,tag:sNa6w296CO9GxeLkyga5yQ==,type:str]
 sops:
     age:
         - enc: |
@@ -30,6 +28,6 @@ sops:
             -----END AGE ENCRYPTED FILE-----
           recipient: age1vh73cy3hwh7e6hvm0wq5y2dl6l4avch3vqkawvqec9dtzawvd58qwsg98a
     encrypted_regex: ^(data|stringData)$
-    lastmodified: "2026-11-08T02:43:19Z"
-    mac: ENC[AES256_GCM,data:jitr+khq/YymjJuK83NvurXQ9zAnOcioLcGBzTyP5McDIU9kuxeMT7cYx+fk0tb3gQj9JEHuhNKkMH40Bm35HFCGF6iplGiSb4ziaiNH7Y1tJuMRC96D2vKJ0FzzH/ThIWqUOhWINhAUvAQPlniv3uxXME5RC9xE4G4buJTVkBc=,iv:92PgQ4pMpOaSBCR7NyaPRVRRSAfJejCwXWKyva3eVZQ=,tag:gYBJOHgqelm3pMYliEeK5Q==,type:str]
+    lastmodified: "2026-11-08T04:09:08Z"
+    mac: ENC[AES256_GCM,data:FyczrdlSlyVtjfFbv47SV8hUETmYsLJgh/5LGDUZoFGbnadrMok4hyY4mLYsO+CI5rOfOqdhJYh59KgXp87EOAGt9JTOQiy9fxVp4LAAyyRp3zH3723PUROyIfwdMu6FXIPtyX5xb66S/By9SROwFgMx1eo31KhXoobEstadQas=,iv:tg4lKmQ4/hBrLpj59qrexnkbDdzXb7sJusiSObKeNa8=,tag:TUTRq/xLf3/kH++XilwmfA==,type:str]
     version: 3.13.3
