@@ -1,4 +1,9 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>home-operations/renovate-presets"]
+  "extends": [
+    "config:recommended",
+    "github>home-operations/renovate-presets",
+    ":timezone(America/New_York)"
+  ],
+  "rebaseWhen": "conflicted"
 }
