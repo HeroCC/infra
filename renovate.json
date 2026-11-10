@@ -5,5 +5,6 @@
     "github>home-operations/renovate-presets",
     ":timezone(America/New_York)"
   ],
-  "rebaseWhen": "conflicted"
+  "rebaseWhen": "conflicted",
+  "ignorePaths": ["clusters/personal/**", "kube-deploy/**"]
 }
