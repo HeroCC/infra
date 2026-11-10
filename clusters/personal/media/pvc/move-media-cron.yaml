@@ -16,7 +16,7 @@ spec:
           restartPolicy: Never
           containers:
             - name: rclone-move
-              image: rclone/rclone:1.61
+              image: rclone/rclone:1.76
               command: ["rclone"]
               args: ["move", "-vv", "local-media:", "remote-media:"]
               env:
