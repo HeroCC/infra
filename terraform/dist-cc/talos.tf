@@ -114,9 +114,15 @@ data "talos_cluster_health" "cluster" {
     talos_cluster.cluster,
   ]
 
-  endpoints            = local.talos_controlplane_ips
-  control_plane_nodes  = local.talos_controlplane_ips
-  worker_nodes         = local.talos_worker_ips
+  endpoints = [
+    for name in local.controlplane_nodes : one(zerotier_member.zerotier_node_network_membership[name].ip_assignments)
+  ]
+  control_plane_nodes = [
+    for name in local.controlplane_nodes : one(zerotier_member.zerotier_node_network_membership[name].ip_assignments)
+  ]
+  worker_nodes = [
+    for name in local.worker_nodes : one(zerotier_member.zerotier_node_network_membership[name].ip_assignments)
+  ]
   client_configuration = talos_machine_secrets.cluster.client_configuration
 }
 

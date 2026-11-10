@@ -88,6 +88,12 @@ variable "nodes" {
       flavor = "lg.12core"
       region = "CSAIL_Stata"
       zone   = "nova"
+    },
+    "ccdist-03" = {
+      role   = "worker"
+      flavor = "lg.4core"
+      region = "CSAIL_Stata"
+      zone   = "nova"
     }
   }
 }
