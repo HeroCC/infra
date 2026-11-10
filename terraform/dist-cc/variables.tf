@@ -16,22 +16,9 @@ variable "sops_age_key" {
 }
 
 # Openstack Credentials
-variable "openstack_auth_url" {
-  type = string
-}
-
-variable "openstack_project_id" {
-  type      = string
-  sensitive = true
-}
-
-variable "openstack_username" {
-  type = string
-}
-
-variable "openstack_password" {
-  type      = string
-  sensitive = true
+variable "openstack_cloud" {
+  description = "OpenStack cloud name from clouds.yaml."
+  type        = string
 }
 
 variable "cluster_name" {

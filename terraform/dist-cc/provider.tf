@@ -20,8 +20,5 @@ provider "zerotier" {
 }
 
 provider "openstack" {
-  user_name = var.openstack_username
-  tenant_id = var.openstack_project_id
-  password  = var.openstack_password
-  auth_url  = var.openstack_auth_url
+  cloud = var.openstack_cloud
 }
