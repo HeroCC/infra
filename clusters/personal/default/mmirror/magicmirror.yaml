@@ -28,7 +28,7 @@ spec:
           cd /modules
           rm -rfv MMM-CalendarExt2 && git clone https://github.com/MMM-CalendarExt2/MMM-CalendarExt2.git
       - name: build-extmodules
-        image: node:20-alpine
+        image: node:26-alpine
         command: ["/bin/sh", "-c"]
         volumeMounts:
         - name: ext-modules
