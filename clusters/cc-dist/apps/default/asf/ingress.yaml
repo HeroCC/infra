@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: asf
+  namespace: default
+  annotations:
+    external-dns.kubernetes.io/target: distcc.${SECRET_DOMAIN}
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+    traefik.ingress.kubernetes.io/router.middlewares: network-tunnel-auth@kubernetescrd
+spec:
+  ingressClassName: traefik-tunnel
+  rules:
+    - host: asf.${SECRET_DOMAIN}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: asf
+                port:
+                  number: 1242
