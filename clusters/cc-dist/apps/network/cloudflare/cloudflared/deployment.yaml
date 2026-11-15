@@ -36,7 +36,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: cloudflared
-          image: cloudflare/cloudflared:2026.10.7
+          image: cloudflare/cloudflared:2026.11.0
           args: [tunnel, --no-autoupdate, --config=/etc/cloudflared/config.yaml, --output=json, run]
           ports:
             - name: metrics
