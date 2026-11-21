@@ -1,0 +1,49 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: cinder-csi
+  namespace: kube-system
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: openstack-cinder-csi
+      version: 2.37.1
+      sourceRef:
+        kind: HelmRepository
+        name: cloud-provider-openstack
+        namespace: flux-system
+  values:
+    clusterID: dist-cc
+    secret:
+      enabled: true
+      create: false
+      hostMount: false
+      name: cinder-csail-cloud-config
+    # Manage the named class separately; do not create the chart's defaults.
+    storageClass:
+      enabled: false
+    csi:
+      provisioner:
+        topology: "true"
+      # No snapshot CRDs/controller are installed in this cluster yet.
+      snapshotter:
+        enabled: false
+      plugin:
+        # Talos has no /etc/cacert host directory. Use the image's CA bundle
+        # and mount cloud.conf from the SOPS-managed Secret instead.
+        volumes: []
+        volumeMounts:
+          - name: cloud-config
+            mountPath: /etc/config
+            readOnly: true
+        nodePlugin:
+          nodeSelector:
+            topology.kubernetes.io/region: CSAIL_Stata
+          # Include the cloud boundary in PV affinity, even if a future cloud
+          # also names its availability zone "nova".
+          extraArgs: |-
+            - --additional-topology=topology.kubernetes.io/region=CSAIL_Stata
+        controllerPlugin:
+          nodeSelector:
+            topology.kubernetes.io/region: CSAIL_Stata
