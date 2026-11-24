@@ -9,7 +9,7 @@ spec:
     spec:
       # Use the same chart pin as the app so the CRD schemas always match.
       chart: traefik
-      version: 42.4.1
+      version: 43.0.0
       sourceRef:
         kind: HelmRepository
         name: traefik
